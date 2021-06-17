@@ -1,0 +1,13 @@
+{
+  "name": "subnet-wars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd client && npm start",
+    "client:dev": "cd client && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
