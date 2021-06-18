@@ -1,0 +1,5 @@
+localhost
+
+log
+
+reverse_proxy http://client:3000

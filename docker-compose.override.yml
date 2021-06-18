@@ -1,0 +1,7 @@
+version: '3'
+services:
+  client:
+    build:
+      target: client-development
+    volumes:
+      - ./client:/usr/src/client:rw,cached

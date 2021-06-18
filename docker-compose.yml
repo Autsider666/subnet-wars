@@ -1,0 +1,34 @@
+version: '3'
+services:
+  client:
+    restart: unless-stopped
+    build:
+      context: ./client
+      target: client-production
+
+  caddy:
+    restart: unless-stopped
+    depends_on:
+      - client
+    build:
+      context: ./docker/Caddy
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      # HTTP
+      - target: 80
+        published: 80
+        protocol: tcp
+      # HTTPS
+      - target: 443
+        published: 443
+        protocol: tcp
+      # HTTP/3
+      - target: 443
+        published: 443
+        protocol: udp
+
+volumes:
+  caddy_data:
+  caddy_config:
