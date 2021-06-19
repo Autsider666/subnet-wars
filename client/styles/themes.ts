@@ -1,10 +1,8 @@
 import type { DefaultTheme } from 'styled-components';
 import defaultTheme from './themes/default';
 
-type Themes = {
+const Themes: {
   [name: string]: DefaultTheme;
-};
+} = { defaultTheme };
 
-const themes: Themes = { defaultTheme };
-
-export default themes;
+export default Themes;

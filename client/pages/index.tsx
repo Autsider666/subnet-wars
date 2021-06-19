@@ -1,18 +1,6 @@
 import { NextPage } from 'next';
-import Desktop from '../components/system/Desktop';
-import Taskbar from '../components/system/TaskBar';
-import AppsLoader from '../components/system/Apps/AppsLoader';
-import { SessionConsumer } from '../contexts/session';
+import Terminal from '../components/apps/Terminal';
 
-const Index: NextPage = () => (
-  <SessionConsumer>
-    {({ taskBarVisible }) => (
-      <Desktop>
-        {taskBarVisible && <Taskbar />}
-        <AppsLoader />
-      </Desktop>
-    )}
-  </SessionConsumer>
-);
+const Index: NextPage = () => <Terminal />;
 
 export default Index;

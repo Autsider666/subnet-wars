@@ -16,11 +16,6 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     user-select: none;
   }
-
-  //ol,
-  //ul {
-  //  list-style: none;
-  //}
 `;
 
 export default GlobalStyle;

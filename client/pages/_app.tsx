@@ -1,14 +1,14 @@
 import type { AppProps } from 'next/app';
 import { NextPage } from 'next';
-import StyledApp from '../components/pages/StyledApp';
-import { ProcessProvider } from '../contexts/process';
+import themes from '../styles/themes';
+import GlobalStyle from '../styles/GlobalStyle';
+import { ThemeProvider } from 'styled-components';
 
 const App: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => (
-  <ProcessProvider>
-    <StyledApp>
-      <Component {...pageProps} />
-    </StyledApp>
-  </ProcessProvider>
+  <ThemeProvider theme={themes.defaultTheme}>
+    <GlobalStyle />
+    <Component {...pageProps} />
+  </ThemeProvider>
 );
 
 export default App;
