@@ -4,7 +4,6 @@ import StyledApp from '../components/pages/StyledApp';
 
 const App: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => (
   <StyledApp>
-    123123
     <Component {...pageProps} />
   </StyledApp>
 );

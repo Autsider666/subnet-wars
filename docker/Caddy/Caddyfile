@@ -1,5 +1,7 @@
-localhost
+localhost {
+    reverse_proxy http://client:3000
+}
 
-log
-
-reverse_proxy http://client:3000
+localhost/api/* {
+    reverse_proxy http://server:8080
+}

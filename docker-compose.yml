@@ -6,10 +6,26 @@ services:
       context: ./client
       target: client-production
 
+  server:
+    build:
+      context: ./server
+      target: server-production
+    environment:
+      SERVICE_PORTS: 8080
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 0
+    depends_on:
+      - redis
+    deploy:
+      mode: replicated
+      replicas: 3
+
   caddy:
     restart: unless-stopped
     depends_on:
       - client
+      - server
     build:
       context: ./docker/Caddy
     volumes:
@@ -28,6 +44,9 @@ services:
       - target: 443
         published: 443
         protocol: udp
+
+  redis:
+    image: redis
 
 volumes:
   caddy_data:
