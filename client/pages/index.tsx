@@ -1,7 +1,13 @@
 import { NextPage } from 'next';
+import Desktop from '../components/systems/Desktop';
+import Taskbar from '../components/systems/TaskBar';
 
 const Index: NextPage = () => {
-  return <h1>Test</h1>;
+  return (
+    <Desktop>
+      <Taskbar />
+    </Desktop>
+  );
 };
 
 export default Index;

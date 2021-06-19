@@ -1,9 +1,12 @@
 import type { DefaultTheme } from 'styled-components';
+import colors from './colors';
+import formats from './formats';
+import sizes from './sizes';
 
 const defaultTheme: DefaultTheme = {
-  colors: {
-    primary: '#269122',
-  },
+  colors,
+  formats,
+  sizes,
 };
 
 export default defaultTheme;
