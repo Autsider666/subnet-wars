@@ -1,6 +1,7 @@
 import StyledTitleBar from './StyledTitleBar';
 import Button from '../../../../styles/common/Button';
 import { CloseIcon, MaximizedIcon, MaximizeIcon, MinimizeIcon } from './TitleBarActionIcons';
+import { signOut } from 'next-auth/client';
 
 type TitleBarProps = {
   title: string;
@@ -22,7 +23,7 @@ const TitleBar = ({ title }: TitleBarProps): JSX.Element => {
         <Button className="maximize" title="Maximize">
           {maximized ? <MaximizedIcon /> : <MaximizeIcon />}
         </Button>
-        <Button className="close" title="Close">
+        <Button className="close" title="Close" onClick={() => signOut()}>
           <CloseIcon />
         </Button>
       </nav>

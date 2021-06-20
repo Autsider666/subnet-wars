@@ -5,12 +5,12 @@ services:
       target: client-development
     volumes:
       - ./client:/usr/src/client:rw,cached
+    environment:
+      NEXTAUTH_URL: https://localhost
+      NEXTAUTH_URL_INTERNAL: http://client:3000
 
   server:
     build:
       target: server-development
     volumes:
       - ./server:/usr/src/server:rw,cached
-#    deploy:
-#      mode: replicated
-#      replicas: 3

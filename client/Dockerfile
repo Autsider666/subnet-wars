@@ -12,6 +12,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN npm install
 
+# Production #
 FROM client-default as client-production
 
 ENV NODE_ENV production
@@ -19,6 +20,7 @@ ENV NODE_ENV production
 CMD ["npm", "build"]
 CMD ["npm", "start"]
 
+# Development #
 FROM client-default as client-development
 
 ENV NODE_ENV development

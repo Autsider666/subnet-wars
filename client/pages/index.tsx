@@ -1,31 +1,28 @@
-import { GetServerSidePropsResult, NextPage } from 'next';
 import Terminal from '../components/apps/Terminal';
 import RenderComponent from '../components/system/Apps/RenderComponent';
-import cookies from 'next-cookies';
+import { getSession, GetSessionOptions } from 'next-auth/client';
+import { GetServerSidePropsResult, NextPage } from 'next';
+import { Session } from 'next-auth';
 
 const Index: NextPage = () => <RenderComponent id="1" Component={Terminal} hasWindow={true} />;
 
 export default Index;
 
-type User = {
-  username: string;
-};
-
-export const getServerSideProps = function (context: {
-  req?: { headers: { cookie?: string } };
-}): GetServerSidePropsResult<User> {
-  const { user } = cookies(context);
-
-  if (!user) {
+export const getServerSideProps = async (
+  context: GetSessionOptions
+): Promise<GetServerSidePropsResult<Session>> => {
+  const session = await getSession(context);
+  console.log(session);
+  if (!session) {
     return {
       redirect: {
-        destination: '/login',
+        destination: '/auth/login',
         permanent: false,
       },
     };
   }
 
   return {
-    props: user,
+    props: { session },
   };
 };

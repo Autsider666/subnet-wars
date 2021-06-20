@@ -7,6 +7,7 @@ services:
       target: client-production
 
   server:
+    restart: unless-stopped
     build:
       context: ./server
       target: server-production

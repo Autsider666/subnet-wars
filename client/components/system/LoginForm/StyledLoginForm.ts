@@ -77,4 +77,8 @@ export const StyledLoginForm = styled.div`
       box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
     }
   }
+
+  .error {
+    color: white;
+  }
 `;
