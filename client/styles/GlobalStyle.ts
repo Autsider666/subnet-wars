@@ -12,9 +12,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: monospace;
+    font-size: 1.3rem;
     overflow: hidden;
     user-select: none;
+    
+    background-color: ${({ theme }) => theme.colors.background};
   }
 `;
 

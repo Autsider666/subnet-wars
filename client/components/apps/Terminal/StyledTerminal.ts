@@ -1,14 +1,13 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import DefaultTitleBarTheme from '../../system/Window/TitleBar/DefaultTitleBarTheme';
 
-export const Window = styled(motion.div)`
+export const StyledTerminal = styled.div`
   background-color: ${({ theme }) => theme.colors.appBackground};
-  bottom: 0;
-  left: 0;
   cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 0;
+
+  display: flex;
+  height: ${`calc(100% - ${DefaultTitleBarTheme.sizes.height}) !important`};
+  width: 100%;
 
   .userInput {
     display: flex;

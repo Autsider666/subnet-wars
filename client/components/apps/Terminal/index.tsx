@@ -1,4 +1,4 @@
-import { Window } from './style';
+import { StyledTerminal } from './StyledTerminal';
 import { useRef, useState } from 'react';
 
 type Line = {
@@ -20,7 +20,7 @@ const Terminal = (): JSX.Element => {
   };
   const userInputRef = useRef<HTMLDivElement | null>(null);
   return (
-    <Window onClick={() => userInputRef?.current?.focus()}>
+    <StyledTerminal onClick={() => userInputRef?.current?.focus()}>
       <div>
         {lines.map(({ key, message }) => (
           <div key={key}>{message}</div>
@@ -36,7 +36,7 @@ const Terminal = (): JSX.Element => {
           ref={userInputRef}
         />
       </div>
-    </Window>
+    </StyledTerminal>
   );
 };
 
