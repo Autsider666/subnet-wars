@@ -14,6 +14,8 @@ FROM server-default as server-production
 
 ENV NODE_ENV production
 
+COPY src ./src
+
 CMD ["npm", "build"]
 CMD ["npm", "start"]
 
@@ -21,4 +23,4 @@ FROM server-default as server-development
 
 ENV NODE_ENV development
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
