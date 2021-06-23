@@ -22,5 +22,9 @@ CMD ["npm", "start"]
 FROM server-default as server-development
 
 ENV NODE_ENV development
+ENV ACCESS_TOKEN_SECRET CHANGEME
+ENV REFRESH_TOKEN_SECRET CHANGEME
+ENV ACCESS_TOKEN_LIFE 1h
+ENV REFRESH_TOKEN_LIFE 7w
 
 CMD ["npm", "start"]

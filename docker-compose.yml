@@ -11,16 +11,8 @@ services:
     build:
       context: ./server
       target: server-production
-    environment:
-      SERVICE_PORTS: 8080
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_DB: 0
     depends_on:
       - redis
-    deploy:
-      mode: replicated
-      replicas: 3
 
   caddy:
     restart: unless-stopped

@@ -1,28 +1,29 @@
 import Terminal from '../components/apps/Terminal';
 import RenderComponent from '../components/system/Apps/RenderComponent';
-import { getSession, GetSessionOptions } from 'next-auth/client';
-import { GetServerSidePropsResult, NextPage } from 'next';
-import { Session } from 'next-auth';
+import { NextPage } from 'next';
+import axios from 'axios';
+import dynamic from 'next/dynamic';
+import { useGameClient } from '../contexts/GameContext';
 
-const Index: NextPage = () => <RenderComponent id="1" Component={Terminal} hasWindow={true} />;
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    return error.response;
+  }
+);
+
+const Index: NextPage = () => {
+  const { connected } = useGameClient();
+
+  const GameContextWrapper = dynamic(() =>
+    import('../contexts/GameContext').then((module) => module.GameContextWrapper)
+  );
+
+  return connected ? (
+    <GameContextWrapper>
+      <RenderComponent id="1" Component={Terminal} hasWindow={true} />
+    </GameContextWrapper>
+  ) : null;
+};
 
 export default Index;
-
-export const getServerSideProps = async (
-  context: GetSessionOptions
-): Promise<GetServerSidePropsResult<Session>> => {
-  const session = await getSession(context);
-  console.log(session);
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/auth/login',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { session },
-  };
-};

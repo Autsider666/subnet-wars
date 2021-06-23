@@ -1,7 +1,9 @@
 localhost {
-    reverse_proxy http://client:3000
-}
+    route /api/* {
+    	uri strip_prefix /api
+    	reverse_proxy server:2567
+    }
 
-server.localhost {
-    reverse_proxy http://server:8080
+
+    reverse_proxy client:3000
 }
