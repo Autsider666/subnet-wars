@@ -33,7 +33,7 @@ const state = {
 export const GameContext: Context<GameClient> = createContext<GameClient>(state);
 
 export const GameContextWrapper = ({ children }: ReactNode): JSX.Element => {
-  if (typeof window !== 'undefined') {
+  if (!client) {
     client = new Client('wss://localhost/api');
   }
   return <GameContext.Provider value={state}>{children}</GameContext.Provider>;

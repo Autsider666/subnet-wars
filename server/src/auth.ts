@@ -51,13 +51,16 @@ export const login = async (request, response) => {
   updatePlayerState(payload);
 
   response.cookie("jwt", accessToken, { secure: true, httpOnly: true });
-  response.send();
+  response.send(
+    await matchMaker.joinOrCreate("os", {
+      username: payload.username,
+    })
+  );
 };
 
 export const refresh = async (req, res) => {
   const accessToken = req.cookies.jwt;
   if (!accessToken) {
-    console.log(req.cookies);
     return res.status(403).send();
   }
 
@@ -65,7 +68,6 @@ export const refresh = async (req, res) => {
   try {
     payload = jwt.verify<UserPayload>(accessToken, ACCESS_TOKEN_SECRET);
   } catch (e) {
-    console.log(accessToken, e);
     return res.status(401).send();
   }
 

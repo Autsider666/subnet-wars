@@ -6,6 +6,12 @@ services:
       context: ./client
       target: client-production
 
+  pwa:
+    restart: unless-stopped
+    build:
+      context: ./pwa
+      target: pwa-production
+
   server:
     restart: unless-stopped
     build:

@@ -14,9 +14,10 @@ const Terminal = (): JSX.Element => {
       return;
     }
 
-    setLines([...lines, { message: event.target?.['innerText'], key: lines.length, self: true }]);
-    event.target.innerText = '';
     event.preventDefault();
+    const target = event.target as HTMLElement;
+    setLines([...lines, { message: target.innerText, key: lines.length, self: true }]);
+    target.innerText = '';
   };
   const userInputRef = useRef<HTMLDivElement | null>(null);
   return (

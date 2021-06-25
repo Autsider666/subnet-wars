@@ -8,6 +8,11 @@ services:
     environment:
       NEXTAUTH_URL: https://localhost
       NEXTAUTH_URL_INTERNAL: http://client:3000
+  pwa:
+    build:
+      target: pwa-development
+    volumes:
+      - ./pwa:/usr/src/pwa:rw,cached
 
   server:
     build:
