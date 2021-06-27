@@ -51,7 +51,7 @@ export const login = async (request, response) => {
 
   const accessToken = generateAccessToken(payload);
 
-  response.cookie("jwt", accessToken, { secure: true, httpOnly: true });
+  response.cookie("accessToken", accessToken, { secure: true, httpOnly: true });
   response.send(
     await matchMaker.joinOrCreate("os", {
       username,
@@ -60,7 +60,7 @@ export const login = async (request, response) => {
 };
 
 export const refresh = async (req, res) => {
-  const accessToken = req.cookies.jwt;
+  const { accessToken } = req.cookies;
   if (!accessToken) {
     return res.status(403).send();
   }

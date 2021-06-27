@@ -9,6 +9,7 @@ axios.interceptors.response.use(
     // if (error.response?.status === 401) {
     //   //TODO logout
     // }
+
     return error.response;
   }
 );
@@ -37,8 +38,8 @@ const LoginForm = (): JSX.Element => {
       password,
     });
     if (status === 200) {
-      setAuthenticated(true);
       hasValidationError(false);
+      setAuthenticated(true);
     } else {
       hasValidationError(true);
       setPassword("");

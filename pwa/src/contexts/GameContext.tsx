@@ -61,6 +61,9 @@ export const useGameClient = (): { connected: boolean } => {
   const [connected, setConnected] = useState(false);
   const { authenticated, setAuthenticated } = useContext(SystemContext);
   useEffect(() => {
+    if (!authenticated) {
+      return;
+    }
     (async (): Promise<void> => {
       const { status, data } = await axios.post<RoomReservation>(
         "https://localhost/api/refresh"
@@ -75,7 +78,7 @@ export const useGameClient = (): { connected: boolean } => {
         setConnected(true);
       }
     })();
-  }, [setAuthenticated]);
+  }, [authenticated, setAuthenticated]);
 
   useEffect(() => {
     if (connected && !authenticated && osRoom !== null) {

@@ -19,26 +19,26 @@ function App() {
     }
   );
 
-  if (connected && authenticated) {
-    return (
-      <div>
-        <button
-          onClick={(): void => {
-            axios.post("https://localhost/api/logout");
-            setAuthenticated(false);
-          }}
-        >
-          Logout
-        </button>
-      </div>
-    );
+  if (!authenticated) {
+    return <LoginForm />;
   }
 
-  if (!connected && authenticated) {
+  if (!connected) {
     return <div>Loading</div>;
   }
 
-  return <LoginForm />;
+  return (
+    <div>
+      <button
+        onClick={async () => {
+          await axios.post("https://localhost/api/logout");
+          setAuthenticated(false);
+        }}
+      >
+        Logout
+      </button>
+    </div>
+  );
 }
 
 export default App;
