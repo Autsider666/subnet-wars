@@ -1,22 +1,35 @@
 import jwt from "jsonwebtoken";
 import { matchMaker } from "colyseus";
+import bcrypt from "bcryptjs";
+import { User, UserDocument } from "../models/user";
 
 type UserPayload = {
   username: string;
   exp?: string;
 };
 
-const users = {
-  yorick: {
-    password: "test",
-  },
-};
-
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const ACCESS_TOKEN_LIFE = process.env.ACCESS_TOKEN_LIFE;
 
-const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
-const REFRESH_TOKEN_LIFE = process.env.REFRESH_TOKEN_LIFE;
+const findUserByCredentials = async (
+  username,
+  password
+): Promise<UserDocument | null> => {
+  if (!username || !password) {
+    return null;
+  }
+
+  const user = await User.findOne({ username });
+  if (!user) {
+    return null;
+  }
+
+  if (await bcrypt.compare(password, user.password)) {
+    return user;
+  }
+
+  return null;
+};
 
 const generateAccessToken = (payload: UserPayload): string => {
   delete payload.exp;
@@ -26,21 +39,11 @@ const generateAccessToken = (payload: UserPayload): string => {
   });
 };
 
-const updatePlayerState = (payload: UserPayload) => {
-  users[payload.username].refreshToken = jwt.sign(
-    payload,
-    REFRESH_TOKEN_SECRET,
-    {
-      algorithm: "HS256",
-      expiresIn: REFRESH_TOKEN_LIFE,
-    }
-  );
-};
-
 export const login = async (request, response) => {
   const { username, password } = request.body;
+  const user = await findUserByCredentials(username, password);
 
-  if (!username || !password || users[username]?.password !== password) {
+  if (user === null) {
     return response.status(401).send();
   }
 
@@ -48,12 +51,10 @@ export const login = async (request, response) => {
 
   const accessToken = generateAccessToken(payload);
 
-  updatePlayerState(payload);
-
   response.cookie("jwt", accessToken, { secure: true, httpOnly: true });
   response.send(
     await matchMaker.joinOrCreate("os", {
-      username: payload.username,
+      username,
     })
   );
 };
@@ -71,11 +72,8 @@ export const refresh = async (req, res) => {
     return res.status(401).send();
   }
 
-  const refreshToken = users[payload.username]?.refreshToken;
-
-  try {
-    jwt.verify(refreshToken, REFRESH_TOKEN_SECRET);
-  } catch (e) {
+  const user = await User.findOne<UserDocument>({ username: payload.username });
+  if (!user) {
     return res.status(401).send();
   }
 
@@ -95,20 +93,17 @@ export const logout = async (req, res) => {
     return res.send();
   }
 
-  let payload: UserPayload;
-  try {
-    payload = jwt.verify<UserPayload>(accessToken, ACCESS_TOKEN_SECRET);
-  } catch (e) {
-    return res.send();
-  }
+  res.clearCookie("accessToken");
 
-  const refreshToken = users[payload.username]?.refreshToken;
-  try {
-    jwt.verify(refreshToken, REFRESH_TOKEN_SECRET);
-  } catch (e) {
-    return res.send();
-  }
-
-  delete users[payload.username].refreshToken;
   res.send();
+};
+
+export const register = async (request, response) => {
+  const { username, password } = request.body;
+  try {
+    await User.create({ username, password });
+    response.status(201).send();
+  } catch (e) {
+    response.status(400).send();
+  }
 };

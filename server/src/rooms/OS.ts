@@ -4,7 +4,6 @@ import * as http from "http";
 
 export class OS extends Room<OperatingSystemState> {
   async onCreate(options: { username: string }) {
-    console.log("onCreate", { options });
     this.setState(new OperatingSystemState());
     this.state.username = options.username;
 
@@ -18,7 +17,6 @@ export class OS extends Room<OperatingSystemState> {
     options: any,
     request?: http.IncomingMessage
   ): Promise<boolean> {
-    console.log("onAuth", { options });
     return options.username === this.state.username;
   }
 

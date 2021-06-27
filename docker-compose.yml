@@ -1,13 +1,7 @@
 version: '3'
 services:
-  client:
-    restart: unless-stopped
-    build:
-      context: ./client
-      target: client-production
-
   pwa:
-    restart: unless-stopped
+    restart: always
     build:
       context: ./pwa
       target: pwa-production
@@ -21,9 +15,9 @@ services:
       - redis
 
   caddy:
-    restart: unless-stopped
+    restart: always
     depends_on:
-      - client
+      - pwa
       - server
     build:
       context: ./docker/Caddy
@@ -46,6 +40,13 @@ services:
 
   redis:
     image: redis
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
 volumes:
   caddy_data:
