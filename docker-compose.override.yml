@@ -1,16 +1,13 @@
 version: '3'
 services:
-  client:
+  pwa:
     build:
-      target: client-development
+      target: pwa-development
     volumes:
-      - ./client:/usr/src/client:rw,cached
+      - ./pwa:/usr/src/pwa:rw,cached
 
   server:
     build:
       target: server-development
     volumes:
       - ./server:/usr/src/server:rw,cached
-#    deploy:
-#      mode: replicated
-#      replicas: 3

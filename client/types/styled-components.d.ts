@@ -5,6 +5,13 @@ declare module 'styled-components' {
     colors: {
       background: string;
       appBackground: string;
+      window: {
+        background: string;
+        outline: string;
+        outlineInactive: string;
+        shadow: string;
+        shadowInactive: string;
+      };
     };
   }
 }
