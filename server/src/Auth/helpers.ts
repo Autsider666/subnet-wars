@@ -102,7 +102,7 @@ export const register = async (request, response) => {
   const { username, password } = request.body;
   try {
     await User.create({ username, password });
-    response.status(201).send();
+    await login(request, response);
   } catch (e) {
     response.status(400).send();
   }

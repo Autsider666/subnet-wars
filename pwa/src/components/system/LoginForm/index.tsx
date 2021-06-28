@@ -46,9 +46,24 @@ const LoginForm = (): JSX.Element => {
     }
   };
 
+  const handleRegistration = async (): Promise<void> => {
+    const { status } = await axios.post("https://localhost/api/register", {
+      username,
+      password,
+    });
+    if (status === 200) {
+      hasValidationError(false);
+      setAuthenticated(true);
+    } else {
+      hasValidationError(true);
+      setPassword("");
+    }
+  };
+
   return (
     <StyledLoginForm>
       <div className="login">
+        <h1>Subnet wars</h1>
         {validationError && <span className="error">Try again</span>}
         <form onSubmit={handleLogin}>
           <input
@@ -70,9 +85,12 @@ const LoginForm = (): JSX.Element => {
           <button type="submit" className="btn btn-block">
             Login
           </button>
-          {/*<Link href="/auth/register">*/}
-          {/*  <a className="btn btn-block">Register</a>*/}
-          {/*</Link>*/}
+          <button
+            className="btn btn-block"
+            onClick={() => handleRegistration()}
+          >
+            Register
+          </button>
         </form>
       </div>
     </StyledLoginForm>

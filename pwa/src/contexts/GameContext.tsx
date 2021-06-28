@@ -20,6 +20,10 @@ export type RoomReservation = {
   };
 };
 
+type GameState = {
+  username: string;
+};
+
 type GameClient = {
   consumeSeatReservation: (
     reservation: RoomReservation
@@ -29,7 +33,7 @@ type GameClient = {
 let client: Client;
 let osRoom: Room | null;
 
-const state = {
+const gameFunctions = {
   consumeSeatReservation: async (
     reservation: RoomReservation | null
   ): Promise<Room | null> => {
@@ -44,7 +48,7 @@ const state = {
 };
 
 export const GameContext: Context<GameClient> =
-  createContext<GameClient>(state);
+  createContext<GameClient>(gameFunctions);
 
 export const GameContextWrapper = ({
   children,
@@ -54,11 +58,19 @@ export const GameContextWrapper = ({
   if (typeof window !== "undefined") {
     client = new Client("wss://localhost/api");
   }
-  return <GameContext.Provider value={state}>{children}</GameContext.Provider>;
+  return (
+    <GameContext.Provider value={gameFunctions}>
+      {children}
+    </GameContext.Provider>
+  );
 };
 
-export const useGameClient = (): { connected: boolean } => {
+export const useGameClient = (): {
+  connected: boolean;
+  state: GameState | null;
+} => {
   const [connected, setConnected] = useState(false);
+  const [state, setState] = useState<GameState | null>(null);
   const { authenticated, setAuthenticated } = useContext(SystemContext);
   useEffect(() => {
     if (!authenticated) {
@@ -73,7 +85,8 @@ export const useGameClient = (): { connected: boolean } => {
         setAuthenticated(false);
       } else {
         if (data) {
-          osRoom = await state.consumeSeatReservation(data);
+          osRoom = await gameFunctions.consumeSeatReservation(data);
+          osRoom?.onStateChange((state) => setState(state));
         }
         setConnected(true);
       }
@@ -86,5 +99,5 @@ export const useGameClient = (): { connected: boolean } => {
     }
   }, [connected, authenticated]);
 
-  return { connected };
+  return { connected, state };
 };

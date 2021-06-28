@@ -3,6 +3,7 @@ import SystemContext from "./contexts/SystemContext";
 import LoginForm from "./components/system/LoginForm";
 import { useGameClient } from "./contexts/GameContext";
 import axios from "axios";
+import Desktop from "./components/system/Desktop";
 
 function App() {
   const { connected } = useGameClient();
@@ -27,18 +28,20 @@ function App() {
     return <div>Loading</div>;
   }
 
-  return (
-    <div>
-      <button
-        onClick={async () => {
-          await axios.post("https://localhost/api/logout");
-          setAuthenticated(false);
-        }}
-      >
-        Logout
-      </button>
-    </div>
-  );
+  return <Desktop />;
+  // return (
+  //   <div>
+  //     {state?.username}
+  //     <button
+  //       onClick={async () => {
+  //         await axios.post("https://localhost/api/logout");
+  //         setAuthenticated(false);
+  //       }}
+  //     >
+  //       Logout
+  //     </button>
+  //   </div>
+  // );
 }
 
 export default App;
