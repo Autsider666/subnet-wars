@@ -56,7 +56,7 @@ export const GameContextWrapper = ({
   children: ReactNode;
 }): JSX.Element => {
   if (typeof window !== "undefined") {
-    client = new Client("wss://localhost/api");
+    client = new Client(`wss://${window.location.hostname}/api`);
   }
   return (
     <GameContext.Provider value={gameFunctions}>
@@ -78,7 +78,7 @@ export const useGameClient = (): {
     }
     (async (): Promise<void> => {
       const { status, data } = await axios.post<RoomReservation>(
-        "https://localhost/api/refresh"
+        "/api/refresh"
       );
       console.log(status);
       if (status !== 200) {

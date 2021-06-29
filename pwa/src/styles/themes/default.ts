@@ -5,6 +5,7 @@ const defaultTheme: DefaultTheme = {
     background: "#222629",
     appBackground: "#474B4F",
     text: "#86C232",
+    startButton: "#FFF",
     window: {
       background: "#808080",
       outline: "hsl(0deg 0% 25% / 75%)",
@@ -21,6 +22,11 @@ const defaultTheme: DefaultTheme = {
     button: {
       background: "#61892F",
       hover: "#86C232",
+    },
+    highlight: "#86C232",
+    glitchy: {
+      left: "rgba(#D8001D, .9)",
+      right: "rgba(#028D46, .9)",
     },
   },
   sizes: {
@@ -39,6 +45,10 @@ const defaultTheme: DefaultTheme = {
     clock: {
       fontSize: "12px",
       width: "76px",
+    },
+    startButton: {
+      iconSize: "19px",
+      width: "36px",
     },
   },
 };

@@ -1,18 +1,19 @@
-// import StartMenu from "components/system/StartMenu";
 import Clock from "./Clock";
-// import StartButton from "components/system/Taskbar/StartButton";
+import StartButton from "./StartButton";
 import StyledTaskbar from "./StyledTaskBar";
+import { useContext } from "react";
+import SystemContext from "../../../../contexts/SystemContext";
+import StartMenu from "../StartMenu";
 // import TaskbarEntries from "components/system/Taskbar/TaskbarEntries";
-// import { useSession } from "contexts/session";
 
 const Taskbar = (): JSX.Element => {
-  // const { startMenuVisible } = useSession();
+  const { showStartMenu } = useContext(SystemContext);
 
   return (
     <>
-      {/*{startMenuVisible && <StartMenu />}*/}
+      {showStartMenu && <StartMenu />}
       <StyledTaskbar tabIndex={-1}>
-        {/*<StartButton />*/}
+        <StartButton />
         {/*<TaskbarEntries />*/}
         <Clock />
       </StyledTaskbar>

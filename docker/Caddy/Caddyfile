@@ -1,4 +1,4 @@
-localhost {
+localhost, *.eu.ngrok.io {
     route /api/* {
     	uri strip_prefix /api
     	reverse_proxy server:2567

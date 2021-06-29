@@ -5,6 +5,8 @@ export type SystemState = {
   setAuthenticated: (newState: boolean) => void;
   loading: boolean;
   setLoading: (newState: boolean) => void;
+  showStartMenu: boolean;
+  toggleStartMenu: (forceStartMenu?: boolean) => void;
 };
 
 export const SystemContext = createContext<SystemState>({} as SystemState);
@@ -16,6 +18,10 @@ export const SystemContextWrapper = ({
 }): JSX.Element => {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showStartMenu, setShowStartMenu] = useState(false);
+  const toggleStartMenu = (forceStartMenu?: boolean) => {
+    setShowStartMenu(forceStartMenu || !showStartMenu);
+  };
   return (
     <SystemContext.Provider
       value={{
@@ -23,6 +29,8 @@ export const SystemContextWrapper = ({
         setAuthenticated,
         loading,
         setLoading,
+        showStartMenu,
+        toggleStartMenu,
       }}
     >
       {children}

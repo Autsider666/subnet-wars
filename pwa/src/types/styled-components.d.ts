@@ -6,6 +6,7 @@ declare module "styled-components" {
       background: string;
       appBackground: string;
       text: string;
+      startButton: string;
       window: {
         background: string;
         outline: string;
@@ -23,6 +24,11 @@ declare module "styled-components" {
         background: string;
         hover: string;
       };
+      highlight: string;
+      glitchy: {
+        left: string;
+        right: string;
+      };
     };
     sizes: {
       taskbar: {
@@ -39,6 +45,10 @@ declare module "styled-components" {
       };
       clock: {
         fontSize: string;
+        width: string;
+      };
+      startButton: {
+        iconSize: string;
         width: string;
       };
     };

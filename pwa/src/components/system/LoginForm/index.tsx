@@ -3,17 +3,6 @@ import axios from "axios";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { SystemContext } from "../../../contexts/SystemContext";
 
-axios.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    // if (error.response?.status === 401) {
-    //   //TODO logout
-    // }
-
-    return error.response;
-  }
-);
-
 const LoginForm = (): JSX.Element => {
   const { setAuthenticated } = useContext(SystemContext);
   const [validationError, hasValidationError] = useState(false);
@@ -22,7 +11,7 @@ const LoginForm = (): JSX.Element => {
 
   useEffect(() => {
     (async (): Promise<void> => {
-      const { status } = await axios.post("https://localhost/api/refresh");
+      const { status } = await axios.post("/api/refresh");
       if (status === 200) {
         setAuthenticated(true);
       }
@@ -33,7 +22,7 @@ const LoginForm = (): JSX.Element => {
     event: FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault();
-    const { status } = await axios.post("https://localhost/api/login", {
+    const { status } = await axios.post("/api/login", {
       username,
       password,
     });
@@ -47,7 +36,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   const handleRegistration = async (): Promise<void> => {
-    const { status } = await axios.post("https://localhost/api/register", {
+    const { status } = await axios.post("/api/register", {
       username,
       password,
     });
