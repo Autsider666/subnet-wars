@@ -25,10 +25,6 @@ declare module "styled-components" {
         hover: string;
       };
       highlight: string;
-      glitchy: {
-        left: string;
-        right: string;
-      };
     };
     sizes: {
       taskbar: {

@@ -29,19 +29,6 @@ function App() {
   }
 
   return <Desktop />;
-  // return (
-  //   <div>
-  //     {state?.username}
-  //     <button
-  //       onClick={async () => {
-  //         await axios.post("https://localhost/api/logout");
-  //         setAuthenticated(false);
-  //       }}
-  //     >
-  //       Logout
-  //     </button>
-  //   </div>
-  // );
 }
 
 export default App;

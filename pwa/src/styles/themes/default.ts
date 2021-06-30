@@ -24,10 +24,6 @@ const defaultTheme: DefaultTheme = {
       hover: "#86C232",
     },
     highlight: "#86C232",
-    glitchy: {
-      left: "rgba(#D8001D, .9)",
-      right: "rgba(#028D46, .9)",
-    },
   },
   sizes: {
     taskbar: {
@@ -48,7 +44,7 @@ const defaultTheme: DefaultTheme = {
     },
     startButton: {
       iconSize: "19px",
-      width: "36px",
+      width: "48px",
     },
   },
 };
