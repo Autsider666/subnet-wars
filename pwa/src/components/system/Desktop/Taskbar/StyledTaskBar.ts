@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledTaskBar = styled.nav`
   backdrop-filter: ${({ theme }) => `blur(${theme.sizes.taskbar.blur})`};

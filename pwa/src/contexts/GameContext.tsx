@@ -1,14 +1,7 @@
-import {
-  Context,
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { Client, Room } from "colyseus.js";
-import axios from "axios";
-import SystemContext from "./SystemContext";
+import { Context, createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { Client, Room } from 'colyseus.js';
+import axios from 'axios';
+import SystemContext from './SystemContext';
 
 export type RoomReservation = {
   sessionId: string;
@@ -25,44 +18,31 @@ type GameState = {
 };
 
 type GameClient = {
-  consumeSeatReservation: (
-    reservation: RoomReservation
-  ) => Promise<Room | null>;
+  consumeSeatReservation: (reservation: RoomReservation) => Promise<Room | null>;
 };
 
 let client: Client;
 let osRoom: Room | null;
 
 const gameFunctions = {
-  consumeSeatReservation: async (
-    reservation: RoomReservation | null
-  ): Promise<Room | null> => {
+  consumeSeatReservation: async (reservation: RoomReservation | null): Promise<Room | null> => {
     if (!client) {
       return null;
     }
 
     const room = await client.consumeSeatReservation(reservation);
-    console.log("joined successfully", room);
+    console.log('joined successfully', room);
     return room;
   },
 };
 
-export const GameContext: Context<GameClient> =
-  createContext<GameClient>(gameFunctions);
+export const GameContext: Context<GameClient> = createContext<GameClient>(gameFunctions);
 
-export const GameContextWrapper = ({
-  children,
-}: {
-  children: ReactNode;
-}): JSX.Element => {
-  if (typeof window !== "undefined") {
+export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
+  if (typeof window !== 'undefined') {
     client = new Client(`wss://${window.location.hostname}/api`);
   }
-  return (
-    <GameContext.Provider value={gameFunctions}>
-      {children}
-    </GameContext.Provider>
-  );
+  return <GameContext.Provider value={gameFunctions}>{children}</GameContext.Provider>;
 };
 
 export const useGameClient = (): {
@@ -77,9 +57,7 @@ export const useGameClient = (): {
       return;
     }
     (async (): Promise<void> => {
-      const { status, data } = await axios.post<RoomReservation>(
-        "/api/refresh"
-      );
+      const { status, data } = await axios.post<RoomReservation>('/api/refresh');
       console.log(status);
       if (status !== 200) {
         setAuthenticated(false);

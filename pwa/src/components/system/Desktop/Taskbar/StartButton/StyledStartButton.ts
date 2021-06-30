@@ -1,13 +1,12 @@
-import styled from "styled-components";
-import Button from "../../../../../styles/common/Button";
+import styled from 'styled-components';
+import Button from '../../../../../styles/common/Button';
 
 type StyledStartButtonProps = {
   active: boolean;
 };
 
 const StyledStartButton = styled(Button)<StyledStartButtonProps>`
-  background-color: ${({ active, theme }) =>
-    active && theme.colors.taskbar.active};
+  background-color: ${({ active, theme }) => active && theme.colors.taskbar.active};
   display: flex;
   fill: ${({ theme }) => theme.colors.startButton};
   height: 100%;
@@ -22,8 +21,7 @@ const StyledStartButton = styled(Button)<StyledStartButtonProps>`
   }
 
   &:hover {
-    background-color: ${({ active, theme }) =>
-      !active && theme.colors.taskbar.hover};
+    background-color: ${({ active, theme }) => !active && theme.colors.taskbar.hover};
 
     svg {
       fill: ${({ theme }) => theme.colors.highlight};

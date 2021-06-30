@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledDesktop = styled.main`
   background-color: ${({ theme }) => theme.colors.background};
@@ -27,9 +27,9 @@ const StyledDesktop = styled.main`
   .start-menu {
     .chonky-chonkyRoot {
       border-radius: 0;
-      background-color: ${({ theme }) => "hsla(0, 0%, 12%, 70%)"};
+      background-color: hsla(0, 0%, 12%, 70%);
 
-      [class^="listFileEntryProperty"] {
+      [class^='listFileEntryProperty'] {
         display: none;
       }
 

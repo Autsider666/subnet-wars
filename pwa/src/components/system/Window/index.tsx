@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-import { ComponentProcessProps } from "../Apps/RenderComponent";
-import StyledWindow from "./StyledWindow";
-import TitleBar from "./TitleBar";
+import { ReactNode } from 'react';
+import { ComponentProcessProps } from '../Apps/RenderComponent';
+import StyledWindow from './StyledWindow';
+import TitleBar from './TitleBar';
 
 type WindowProps = ComponentProcessProps & {
   children: ReactNode;

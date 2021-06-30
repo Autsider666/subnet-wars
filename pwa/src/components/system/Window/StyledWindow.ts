@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import DefaultWindowTheme from "./DefaultWindowTheme";
+import styled from 'styled-components';
+import DefaultWindowTheme from './DefaultWindowTheme';
 
 type StyledWindowProps = {
   foreground: boolean;
@@ -8,15 +8,11 @@ type StyledWindowProps = {
 const StyledWindow = styled.div<StyledWindowProps>`
   background-color: ${DefaultWindowTheme.colors.background};
   box-shadow: ${({ foreground }) =>
-    foreground
-      ? DefaultWindowTheme.colors.shadow
-      : DefaultWindowTheme.colors.shadowInactive};
+    foreground ? DefaultWindowTheme.colors.shadow : DefaultWindowTheme.colors.shadowInactive};
   height: 100%;
   outline: ${({ foreground }) =>
     `${DefaultWindowTheme.colors.outline} solid ${
-      foreground
-        ? DefaultWindowTheme.colors.outline
-        : DefaultWindowTheme.colors.outlineInactive
+      foreground ? DefaultWindowTheme.colors.outline : DefaultWindowTheme.colors.outlineInactive
     }`};
   overflow: hidden;
   position: absolute;

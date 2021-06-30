@@ -1,10 +1,9 @@
-import StyledClock from "./StyledClock";
-import { useEffect, useState } from "react";
+import StyledClock from './StyledClock';
+import { useEffect, useState } from 'react';
 
 const Clock = (): JSX.Element => {
   const [dateTime, setDateTime] = useState<Date>(new Date());
-  const [intervalCallback, setIntervalCallback] =
-    useState<NodeJS.Timeout | null>(null);
+  const [intervalCallback, setIntervalCallback] = useState<NodeJS.Timeout | null>(null);
   useEffect(() => {
     if (intervalCallback === null) {
       setIntervalCallback(setInterval(() => setDateTime(new Date()), 1000));
@@ -16,11 +15,7 @@ const Clock = (): JSX.Element => {
       clearInterval(intervalCallback);
     };
   }, [intervalCallback]);
-  return (
-    <StyledClock>
-      {dateTime.toLocaleTimeString()}
-    </StyledClock>
-  );
+  return <StyledClock>{dateTime.toLocaleTimeString()}</StyledClock>;
 };
 
 export default Clock;

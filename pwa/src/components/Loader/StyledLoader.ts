@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
 type LoadedProps = {
-    loaded: boolean
+  loaded: boolean;
 };
 
 const StyledLoader = styled.div<LoadedProps>`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
 
-  #loader { // Outer
+  #loader {
+    // Outer
     display: block;
     position: relative;
     left: 50%;
@@ -22,7 +23,7 @@ const StyledLoader = styled.div<LoadedProps>`
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #61892F;
+    border-top-color: #61892f;
 
     -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
@@ -30,8 +31,9 @@ const StyledLoader = styled.div<LoadedProps>`
     z-index: 1001;
   }
 
-  #loader:before { // Center
-    content: "";
+  #loader:before {
+    // Center
+    content: '';
     position: absolute;
     top: 5px;
     left: 5px;
@@ -39,14 +41,15 @@ const StyledLoader = styled.div<LoadedProps>`
     bottom: 5px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #86C232;
+    border-top-color: #86c232;
 
     -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
 
-  #loader:after { // Inner
-    content: "";
+  #loader:after {
+    // Inner
+    content: '';
     position: absolute;
     top: 15px;
     left: 15px;
@@ -54,7 +57,7 @@ const StyledLoader = styled.div<LoadedProps>`
     bottom: 15px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #ACD96D;
+    border-top-color: #acd96d;
 
     -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
@@ -107,7 +110,9 @@ const StyledLoader = styled.div<LoadedProps>`
 
   /* Loaded */
 
-  ${({loaded}) => loaded && `
+  ${({ loaded }) =>
+    loaded &&
+    `
      .loader-section.section-left {
     -webkit-transform: translateX(-100%); /* Chrome, Opera 15+, Safari 3.1+ */
     -ms-transform: translateX(-100%); /* IE 9 */

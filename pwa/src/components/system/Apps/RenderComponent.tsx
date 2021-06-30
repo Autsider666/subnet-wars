@@ -1,5 +1,5 @@
-import { ComponentType } from "react";
-import Window from "../Window";
+import { ComponentType } from 'react';
+import Window from '../Window';
 
 export type ComponentProcessProps = {
   id: string;
@@ -11,11 +11,7 @@ type RenderComponentProps = {
   id: string;
 };
 
-const RenderComponent = ({
-  Component,
-  hasWindow = true,
-  id,
-}: RenderComponentProps): JSX.Element =>
+const RenderComponent = ({ Component, hasWindow = true, id }: RenderComponentProps): JSX.Element =>
   hasWindow ? (
     <Window id={id}>
       <Component id={id} />
