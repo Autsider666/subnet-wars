@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components';
 import { setChonkyDefaults } from 'chonky';
 import { ChonkyIconFA } from 'chonky-icon-fontawesome';
 import { FileSystemWrapper } from './contexts/FileSystemContext';
+import { ProcessorContextWrapper } from './contexts/ProcessorContext';
 
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
 
@@ -19,11 +20,13 @@ ReactDOM.render(
     <ThemeProvider theme={themes.defaultTheme}>
       <GlobalStyle />
       <SystemContextWrapper>
-        <FileSystemWrapper>
-          <GameContextWrapper>
-            <App />
-          </GameContextWrapper>
-        </FileSystemWrapper>
+        <ProcessorContextWrapper>
+          <FileSystemWrapper>
+            <GameContextWrapper>
+              <App />
+            </GameContextWrapper>
+          </FileSystemWrapper>
+        </ProcessorContextWrapper>
       </SystemContextWrapper>
     </ThemeProvider>
   </React.StrictMode>,
