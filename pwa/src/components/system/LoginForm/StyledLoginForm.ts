@@ -39,7 +39,7 @@ export const StyledLoginForm = styled.div`
 
   .login {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     margin: -150px 0 0 -150px;
     width: 300px;
@@ -77,7 +77,6 @@ export const StyledLoginForm = styled.div`
     }
 
     :focus {
-      //background: lightgrey;
       box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
     }
   }

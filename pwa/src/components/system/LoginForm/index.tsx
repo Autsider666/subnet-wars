@@ -2,6 +2,7 @@ import { StyledLoginForm } from './StyledLoginForm';
 import axios from 'axios';
 import { FormEvent, useContext, useState } from 'react';
 import { SystemContext } from '../../../contexts/SystemContext';
+import { LogoIcon } from '../../../styles/icons/general';
 
 const LoginForm = (): JSX.Element => {
   const { setAuthenticated, setLoading } = useContext(SystemContext);
@@ -43,7 +44,7 @@ const LoginForm = (): JSX.Element => {
   return (
     <StyledLoginForm>
       <div className="login">
-        <h1>Subnet wars</h1>
+        <LogoIcon />
         {validationError && <span className="error">Try again</span>}
         <form onSubmit={handleLogin}>
           <input
