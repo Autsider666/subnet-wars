@@ -2,6 +2,7 @@ import { Context, createContext, ReactNode, useContext, useEffect, useState } fr
 import { Client, Room } from 'colyseus.js';
 import axios from 'axios';
 import SystemContext from './SystemContext';
+import { FileSystemContext } from './FileSystemContext';
 
 export type RoomReservation = {
   sessionId: string;
@@ -13,9 +14,9 @@ export type RoomReservation = {
   };
 };
 
-type GameState = {
-  username: string;
-};
+// type GameState = {
+//   username: string;
+// };
 
 type GameClient = {
   consumeSeatReservation: (reservation: RoomReservation) => Promise<Room | null>;
@@ -39,19 +40,14 @@ const gameFunctions = {
 export const GameContext: Context<GameClient> = createContext<GameClient>(gameFunctions);
 
 export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
+  const [connected, setConnected] = useState(false);
+  // const [state, setState] = useState<GameState | null>(null);
+  const { authenticated, setAuthenticated } = useContext(SystemContext);
+  const { initializeFileSystem } = useContext(FileSystemContext);
+
   if (typeof window !== 'undefined') {
     client = new Client(`wss://${window.location.hostname}/api`);
   }
-  return <GameContext.Provider value={gameFunctions}>{children}</GameContext.Provider>;
-};
-
-export const useGameClient = (): {
-  connected: boolean;
-  state: GameState | null;
-} => {
-  const [connected, setConnected] = useState(false);
-  const [state, setState] = useState<GameState | null>(null);
-  const { authenticated, setAuthenticated } = useContext(SystemContext);
   useEffect(() => {
     if (!authenticated) {
       return;
@@ -64,12 +60,15 @@ export const useGameClient = (): {
       } else {
         if (data) {
           osRoom = await gameFunctions.consumeSeatReservation(data);
-          osRoom?.onStateChange((state) => setState(state));
+          // osRoom?.onStateChange((state) => setState(state));
+          if (osRoom !== null) {
+            initializeFileSystem(osRoom);
+          }
         }
         setConnected(true);
       }
     })();
-  }, [authenticated, setAuthenticated]);
+  }, [initializeFileSystem, authenticated, setAuthenticated]);
 
   useEffect(() => {
     if (connected && !authenticated && osRoom !== null) {
@@ -77,5 +76,18 @@ export const useGameClient = (): {
     }
   }, [connected, authenticated]);
 
-  return { connected, state };
+  return <GameContext.Provider value={gameFunctions}>{children}</GameContext.Provider>;
 };
+
+// export const useGameClient = (): {
+//   connected: boolean;
+//   state: GameState | null;
+// } => {
+//   const [connected, setConnected] = useState(false);
+//   const [state, setState] = useState<GameState | null>(null);
+//   const { authenticated, setAuthenticated } = useContext(SystemContext);
+//
+//
+//
+//   return { connected, state };
+// };

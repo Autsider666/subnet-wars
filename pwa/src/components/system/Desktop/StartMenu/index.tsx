@@ -2,7 +2,7 @@ import SideBar from './SideBar';
 import StyledStartMenu from './StyledStartMenu';
 import { FocusEventHandler, useContext, useEffect, useRef } from 'react';
 import SystemContext from '../../../../contexts/SystemContext';
-import { ChonkyActions, FileArray, FileBrowser, FileList } from 'chonky';
+import FileView from '../../Files/FileView';
 
 const StartMenu = (): JSX.Element => {
   const { toggleStartMenu } = useContext(SystemContext);
@@ -24,23 +24,10 @@ const StartMenu = (): JSX.Element => {
 
   useEffect(() => menuRef.current?.focus(), []);
 
-  const files: FileArray = [
-    { id: 'lht', name: 'Projects', isDir: true },
-    {
-      id: 'mcd',
-      name: 'chonky-sphere-v2.png',
-      thumbnailUrl: 'https://chonky.io/chonky-sphere-v2.png',
-    },
-  ];
-
   return (
     <StyledStartMenu onBlur={maybeCloseMenu} tabIndex={-1} ref={menuRef}>
       <SideBar />
-      <div className={'start-menu'} style={{ width: '100%' }}>
-        <FileBrowser files={files} defaultFileViewActionId={ChonkyActions.EnableListView.id}>
-          <FileList />
-        </FileBrowser>
-      </div>
+      <FileView url={'/startMenu'} listDisplay={true} compact={true} />
     </StyledStartMenu>
   );
 };

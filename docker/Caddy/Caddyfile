@@ -1,8 +1,0 @@
-localhost, *.eu.ngrok.io {
-    route /api/* {
-    	uri strip_prefix /api
-    	reverse_proxy server:2567
-    }
-
-    reverse_proxy pwa:3000
-}

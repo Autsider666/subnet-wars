@@ -27,10 +27,9 @@ const bottomButtons: SideBarButtonProps[] = [
 ];
 
 const SidebarButton = ({ active, icon, name, action }: SideBarButtonProps): JSX.Element => (
-  <SystemContext.Consumer>
+  <SystemContext.Consumer key={name}>
     {(context) => (
       <StyledSidebarButton
-        key={name}
         active={active}
         onClick={() => (action ? action(context) : null)}
         title={name}

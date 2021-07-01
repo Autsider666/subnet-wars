@@ -8,15 +8,22 @@ import { SystemContextWrapper } from './contexts/SystemContext';
 import themes from './styles/themes';
 import GlobalStyle from './styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
+import { setChonkyDefaults } from 'chonky';
+import { ChonkyIconFA } from 'chonky-icon-fontawesome';
+import { FileSystemWrapper } from './contexts/FileSystemContext';
+
+setChonkyDefaults({ iconComponent: ChonkyIconFA });
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={themes.defaultTheme}>
       <GlobalStyle />
       <SystemContextWrapper>
-        <GameContextWrapper>
-          <App />
-        </GameContextWrapper>
+        <FileSystemWrapper>
+          <GameContextWrapper>
+            <App />
+          </GameContextWrapper>
+        </FileSystemWrapper>
       </SystemContextWrapper>
     </ThemeProvider>
   </React.StrictMode>,

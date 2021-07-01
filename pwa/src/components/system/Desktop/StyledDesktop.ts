@@ -10,35 +10,6 @@ const StyledDesktop = styled.main`
   top: 0;
   width: 100vw;
 
-  .chonky-chonkyRoot {
-    border-radius: 0;
-    background-color: ${({ theme }) => theme.colors.background};
-
-    [data-chonky-file-id] {
-      color: white;
-
-      *::after {
-        border-color: ${({ theme }) =>
-          `${theme.colors.background} ${theme.colors.background} transparent transparent`};
-      }
-    }
-  }
-
-  .start-menu {
-    .chonky-chonkyRoot {
-      border-radius: 0;
-      background-color: hsla(0, 0%, 12%, 70%);
-
-      [class^='listFileEntryProperty'] {
-        display: none;
-      }
-
-      [data-chonky-file-id] {
-        color: white;
-      }
-    }
-  }
-
   //background: #333;
   //background-image: linear-gradient(
   //    rgba(0, 255, 0, 0.7) 0.1em,
