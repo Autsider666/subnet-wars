@@ -25,6 +25,15 @@ declare module 'styled-components' {
         hover: string;
       };
       highlight: string;
+      titleBar: {
+        background: string;
+        backgroundHover: string;
+        backgroundInactive: string;
+        buttonInactive: string;
+        closeHover: string;
+        text: string;
+        textInactive: string;
+      };
     };
     sizes: {
       taskbar: {
@@ -46,6 +55,19 @@ declare module 'styled-components' {
       startButton: {
         iconSize: string;
         width: string;
+      };
+      titleBar: {
+        buttonIconWidth: string;
+        buttonWidth: string;
+        fontSize: string;
+        height: string;
+        iconMargin: string;
+        iconSize: string;
+      };
+      window: {
+        cascadeOffset: number;
+        lineHeight: string;
+        outline: string;
       };
     };
   }

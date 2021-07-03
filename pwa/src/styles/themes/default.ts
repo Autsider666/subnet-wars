@@ -24,6 +24,15 @@ const defaultTheme: DefaultTheme = {
       hover: '#86C232',
     },
     highlight: '#86C232',
+    titleBar: {
+      background: '#474B4F',
+      backgroundHover: 'rgb(26, 26, 26)',
+      backgroundInactive: '#6B6E70',
+      buttonInactive: 'rgb(128, 128, 128)',
+      closeHover: 'rgb(232, 17, 35)',
+      text: 'rgb(255, 255, 255)',
+      textInactive: 'rgb(170, 170, 170)',
+    },
   },
   sizes: {
     taskbar: {
@@ -45,6 +54,19 @@ const defaultTheme: DefaultTheme = {
     startButton: {
       iconSize: '19px',
       width: '48px',
+    },
+    titleBar: {
+      buttonIconWidth: '10px',
+      buttonWidth: '45px',
+      fontSize: '12px',
+      height: '30px',
+      iconMargin: '0 5px 0 8px',
+      iconSize: '16px',
+    },
+    window: {
+      cascadeOffset: 26,
+      lineHeight: '14px',
+      outline: '1px',
     },
   },
 };

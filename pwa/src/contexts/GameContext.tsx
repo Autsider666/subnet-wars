@@ -1,8 +1,8 @@
 import { Context, createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { Client, Room } from 'colyseus.js';
 import axios from 'axios';
-import SystemContext from './SystemContext';
-import { FileSystemContext } from './FileSystemContext';
+import { useSystem } from 'contexts/SystemContext';
+import { FileSystemContext } from 'contexts/FileSystemContext';
 
 export type RoomReservation = {
   sessionId: string;
@@ -42,7 +42,7 @@ export const GameContext: Context<GameClient> = createContext<GameClient>(gameFu
 export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
   const [connected, setConnected] = useState(false);
   // const [state, setState] = useState<GameState | null>(null);
-  const { authenticated, setAuthenticated } = useContext(SystemContext);
+  const { authenticated, setAuthenticated } = useSystem();
   const { initializeFileSystem } = useContext(FileSystemContext);
 
   if (typeof window !== 'undefined') {
@@ -78,16 +78,3 @@ export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.E
 
   return <GameContext.Provider value={gameFunctions}>{children}</GameContext.Provider>;
 };
-
-// export const useGameClient = (): {
-//   connected: boolean;
-//   state: GameState | null;
-// } => {
-//   const [connected, setConnected] = useState(false);
-//   const [state, setState] = useState<GameState | null>(null);
-//   const { authenticated, setAuthenticated } = useContext(SystemContext);
-//
-//
-//
-//   return { connected, state };
-// };

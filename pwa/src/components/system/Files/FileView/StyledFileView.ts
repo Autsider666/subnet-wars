@@ -13,6 +13,7 @@ const StyledFileView = styled.div<StyledFileViewProps>`
     border: 0;
     border-radius: 0;
     background-color: transparent;
+    padding: 0;
 
     [data-chonky-file-id] {
       color: white;

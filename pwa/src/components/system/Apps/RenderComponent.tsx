@@ -1,5 +1,5 @@
-import { ComponentType } from 'react';
-import Window from '../Window';
+import { ComponentType, Suspense } from 'react';
+import Window from 'components/system/Window';
 
 export type ComponentProcessProps = {
   id: string;
@@ -14,7 +14,9 @@ type RenderComponentProps = {
 const RenderComponent = ({ Component, hasWindow = true, id }: RenderComponentProps): JSX.Element =>
   hasWindow ? (
     <Window id={id}>
-      <Component id={id} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Component id={id} />
+      </Suspense>
     </Window>
   ) : (
     <Component id={id} />

@@ -20,6 +20,7 @@ export const FileSystemWrapper = ({ children }: { children: ReactNode }): JSX.El
     {
       id: 'desktop',
       name: 'desktop',
+      isDir: true,
       content: [
         { id: 'text', name: 'bla', type: 'jsx' },
         { id: 'dir', name: 'first folder', isDir: true },
@@ -28,6 +29,7 @@ export const FileSystemWrapper = ({ children }: { children: ReactNode }): JSX.El
     {
       id: 'startMenu',
       name: 'startMenu',
+      isDir: true,
       content: [{ id: 'test2', name: 'muhahaha', type: 'txt' }],
     },
   ]);
@@ -62,6 +64,6 @@ export const useFileSystem = (url: string): { files: FileSystemCollection } => {
       break;
     }
   }
-  console.log(url, files);
+
   return { files };
 };

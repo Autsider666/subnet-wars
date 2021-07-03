@@ -1,6 +1,6 @@
 import { ChonkyActions, FileBrowser, FileContextMenu, FileList } from 'chonky';
-import StyledFileView from './StyledFileView';
-import { useFileSystem } from '../../../../contexts/FileSystemContext';
+import StyledFileView from 'components/system/Files/FileView/StyledFileView';
+import { useFileSystem } from 'contexts/FileSystemContext';
 
 interface FileViewProps {
   url: string;

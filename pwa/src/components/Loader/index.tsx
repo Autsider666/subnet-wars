@@ -1,12 +1,12 @@
-import StyledLoader from './StyledLoader';
+import StyledLoader from 'components/Loader/StyledLoader';
 import { ReactNode } from 'react';
 
 const Loader = ({ children, loaded }: { children: ReactNode; loaded: boolean }): JSX.Element => (
   <>
     <StyledLoader loaded={loaded}>
-      <div id="loader"></div>
-      <div className="loader-section section-left"></div>
-      <div className="loader-section section-right"></div>
+      <div id="loader" />
+      <div className="loader-section section-left" />
+      <div className="loader-section section-right" />
     </StyledLoader>
     {children}
   </>

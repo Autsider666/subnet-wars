@@ -1,7 +1,13 @@
-import { AllApps, Documents, Power, SideMenu } from './SideBarIcons';
-import StyledSidebar from './StyledSidebar';
-import StyledSidebarButton from './StyledSidebarButton';
-import SystemContext, { SystemState } from '../../../../../contexts/SystemContext';
+import {
+  AllApps,
+  Documents,
+  Power,
+  SideMenu,
+} from 'components/system/Desktop/StartMenu/SideBar/SideBarIcons';
+import StyledSidebar from 'components/system/Desktop/StartMenu/SideBar/StyledSidebar';
+import StyledSidebarButton from 'components/system/Desktop/StartMenu/SideBar/StyledSidebarButton';
+import { SystemState, useSystem } from 'contexts/SystemContext';
+import { useProcessor } from 'contexts/processor/ProcessorContext';
 
 type SideBarButtonProps = {
   active?: boolean;
@@ -10,45 +16,56 @@ type SideBarButtonProps = {
   action?: (system: SystemState) => Promise<void>;
 };
 
-const topButtons = [
-  { name: 'START', icon: <SideMenu /> },
-  { name: 'All apps', icon: <AllApps />, active: true },
-];
+const SidebarButton = ({ active, icon, name, action }: SideBarButtonProps): JSX.Element => {
+  const context = useSystem();
 
-const bottomButtons: SideBarButtonProps[] = [
-  { name: 'Documents', icon: <Documents /> },
-  {
-    name: 'Logout',
-    icon: <Power />,
-    action: async ({ logout }) => {
-      await logout();
+  return (
+    <StyledSidebarButton
+      key={name}
+      active={active}
+      onClick={() => (action ? action(context) : null)}
+      title={name}
+    >
+      <figure>
+        {icon}
+        <figcaption>{name}</figcaption>
+      </figure>
+    </StyledSidebarButton>
+  );
+};
+
+const SideBar = (): JSX.Element => {
+  const { open } = useProcessor();
+
+  const topButtons = [
+    { name: 'START', icon: <SideMenu /> },
+    { name: 'All apps', icon: <AllApps />, active: true },
+  ];
+
+  const bottomButtons: SideBarButtonProps[] = [
+    {
+      name: 'Documents',
+      icon: <Documents />,
+      action: async () => {
+        open('FileExplorer', '/');
+      },
     },
-  },
-];
+    {
+      name: 'Logout',
+      icon: <Power />,
+      action: async ({ logout }) => {
+        await logout();
+      },
+    },
+  ];
 
-const SidebarButton = ({ active, icon, name, action }: SideBarButtonProps): JSX.Element => (
-  <SystemContext.Consumer key={name}>
-    {(context) => (
-      <StyledSidebarButton
-        active={active}
-        onClick={() => (action ? action(context) : null)}
-        title={name}
-      >
-        <figure>
-          {icon}
-          <figcaption>{name}</figcaption>
-        </figure>
-      </StyledSidebarButton>
-    )}
-  </SystemContext.Consumer>
-);
+  return (
+    <StyledSidebar>
+      {Object.entries({ topButtons, bottomButtons }).map(([key, buttons]) => (
+        <ol key={key}>{buttons.map(SidebarButton)}</ol>
+      ))}
+    </StyledSidebar>
+  );
+};
 
-const Sidebar = (): JSX.Element => (
-  <StyledSidebar>
-    {Object.entries({ topButtons, bottomButtons }).map(([key, buttons]) => (
-      <ol key={key}>{buttons.map(SidebarButton)}</ol>
-    ))}
-  </StyledSidebar>
-);
-
-export default Sidebar;
+export default SideBar;

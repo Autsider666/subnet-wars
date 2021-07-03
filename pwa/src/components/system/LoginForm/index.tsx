@@ -1,11 +1,11 @@
-import { StyledLoginForm } from './StyledLoginForm';
+import { StyledLoginForm } from 'components/system/LoginForm/StyledLoginForm';
 import axios from 'axios';
-import { FormEvent, useContext, useState } from 'react';
-import { SystemContext } from '../../../contexts/SystemContext';
-import { LogoIcon } from '../../../styles/icons/general';
+import { FormEvent, useState } from 'react';
+import { useSystem } from 'contexts/SystemContext';
+import { LogoIcon } from 'styles/icons/general';
 
 const LoginForm = (): JSX.Element => {
-  const { setAuthenticated, setLoading } = useContext(SystemContext);
+  const { setAuthenticated, setLoading } = useSystem();
   const [validationError, hasValidationError] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

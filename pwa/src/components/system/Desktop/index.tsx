@@ -1,13 +1,13 @@
-import StyledDesktop from './StyledDesktop';
-import TaskBar from './Taskbar';
-import FileView from '../Files/FileView';
-import AppsLoader from '../Apps/AppsLoader';
+import StyledDesktop from 'components/system/Desktop/StyledDesktop';
+import TaskBar from 'components/system/Desktop/TaskBar';
+import FileView from 'components/system/Files/FileView';
+import AppsLoader from 'components/system/Apps/AppsLoader';
 
 const Desktop = (): JSX.Element => (
   <StyledDesktop>
     <FileView url={'/desktop'} />
-    <AppsLoader />
     <TaskBar />
+    <AppsLoader />
   </StyledDesktop>
 );
 

@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from 'react';
-import SystemContext from './contexts/SystemContext';
-import LoginForm from './components/system/LoginForm';
+import React, { useEffect } from 'react';
+import LoginForm from 'components/system/LoginForm';
 import axios from 'axios';
-import Desktop from './components/system/Desktop';
-import Loader from './components/Loader';
+import Desktop from 'components/system/Desktop';
+import Loader from 'components/Loader';
+import { useSystem } from 'contexts/SystemContext';
 
 const App = (): JSX.Element => {
-  const { authenticated, setAuthenticated, loading, setLoading } = useContext(SystemContext);
+  const { authenticated, setAuthenticated, loading, setLoading } = useSystem();
 
   useEffect(() => {
     (async (): Promise<void> => {

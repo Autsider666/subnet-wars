@@ -1,4 +1,4 @@
-import StyledClock from './StyledClock';
+import StyledClock from 'components/system/Desktop/TaskBar/Clock/StyledClock';
 import { useEffect, useState } from 'react';
 
 const Clock = (): JSX.Element => {

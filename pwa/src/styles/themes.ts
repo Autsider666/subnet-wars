@@ -1,5 +1,5 @@
 import type { DefaultTheme } from 'styled-components';
-import defaultTheme from './themes/default';
+import defaultTheme from 'styles/themes/default';
 
 const Themes: {
   [name: string]: DefaultTheme;

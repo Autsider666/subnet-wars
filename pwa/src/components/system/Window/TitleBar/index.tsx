@@ -1,28 +1,59 @@
-import StyledTitleBar from './StyledTitleBar';
-import Button from '../../../../styles/common/Button';
-import { CloseIcon, MaximizedIcon, MaximizeIcon, MinimizeIcon } from './TitleBarActionIcons';
+import useDoubleClick from 'components/system/useDoubleClick';
+import StyledTitleBar from 'components/system/Window/TitleBar/StyledTitleBar';
+import useWindowActions from 'components/system/Window/TitleBar/useWindowActions';
+import {
+  CloseIcon,
+  MaximizedIcon,
+  MaximizeIcon,
+  MinimizeIcon,
+} from 'components/system/Window/TitleBar/WindowActionIcons';
+import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useSystem } from 'contexts/SystemContext';
+import Button from 'styles/common/Button';
 
 type TitleBarProps = {
-  title: string;
+  id: string;
 };
 
-const TitleBar = ({ title }: TitleBarProps): JSX.Element => {
-  const maximized = true;
+const TitleBar = ({ id }: TitleBarProps): JSX.Element => {
+  const {
+    processes: {
+      [id]: {
+        autoSizing = false,
+        // icon = '',
+        lockAspectRatio = false,
+        title = '',
+        maximized = false,
+      } = {},
+    },
+  } = useProcessor();
+  const { foregroundId } = useSystem();
+  const isForeground = id === foregroundId;
+  const { onClose, onMaximize, onMinimize } = useWindowActions(id);
+  const disableMaximize = autoSizing && !lockAspectRatio;
+  const maximizeClick = useDoubleClick(onMaximize);
+
   return (
-    <StyledTitleBar className="handle" foreground={true}>
-      <h1>
+    <StyledTitleBar className="handle" foreground={isForeground}>
+      <h1 onClick={disableMaximize ? undefined : maximizeClick}>
         <figure>
+          {/*<Icon src={icon} alt={title} onClick={useDoubleClick(onClose)} imgSize={16} />*/}
           <figcaption>{title}</figcaption>
         </figure>
       </h1>
       <nav className="cancel">
-        <Button className="minimize" title="Minimize">
+        <Button className="minimize" onClick={onMinimize} title="Minimize">
           <MinimizeIcon />
         </Button>
-        <Button className="maximize" title="Maximize">
+        <Button
+          className="maximize"
+          disabled={disableMaximize}
+          onClick={onMaximize}
+          title="Maximize"
+        >
           {maximized ? <MaximizedIcon /> : <MaximizeIcon />}
         </Button>
-        <Button className="close" title="Close">
+        <Button className="close" onClick={onClose} title="Close">
           <CloseIcon />
         </Button>
       </nav>
