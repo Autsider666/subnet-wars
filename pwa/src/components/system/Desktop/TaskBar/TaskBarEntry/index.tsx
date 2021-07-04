@@ -7,12 +7,12 @@ import { useCallback } from 'react';
 import Button from 'styles/common/Button';
 
 type TaskBarEntryProps = {
-  icon: string;
+  icon: () => JSX.Element;
   id: string;
   title: string;
 };
 
-const TaskBarEntry = ({ id, title }: TaskBarEntryProps): JSX.Element => {
+const TaskBarEntry = ({ id, title, icon }: TaskBarEntryProps): JSX.Element => {
   const nextFocusableId = useNextFocusable(id);
   const { foregroundId, setForegroundId } = useSystem();
   const isForeground = id === foregroundId;
@@ -40,7 +40,7 @@ const TaskBarEntry = ({ id, title }: TaskBarEntryProps): JSX.Element => {
       {PeekComponent && <PeekComponent />}
       <Button onClick={onClick} ref={linkTaskBarEntry}>
         <figure>
-          {/*<Icon src={icon} alt={title} imgSize={16} />*/}
+          {icon()}
           <figcaption>{title}</figcaption>
         </figure>
       </Button>

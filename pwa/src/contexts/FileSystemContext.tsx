@@ -1,12 +1,15 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { Room } from 'colyseus.js';
-import { FileData } from 'chonky';
 
-interface FileSystemEntity extends FileData {
-  content?: FileSystemEntity[];
+export interface File {
+  extension: string;
 }
 
-type FileSystemCollection = FileSystemEntity[];
+export interface Directory {
+  content: FileSystemCollection;
+}
+
+type FileSystemCollection = { [id: string]: File | Directory };
 
 export interface FileSystemState {
   initializeFileSystem: (room: Room) => void;
@@ -16,23 +19,31 @@ export interface FileSystemState {
 export const FileSystemContext = createContext<FileSystemState>({} as FileSystemState);
 
 export const FileSystemWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
-  const [fileStructure, setFileStructure] = useState<FileSystemCollection>([
-    {
-      id: 'desktop',
-      name: 'desktop',
-      isDir: true,
-      content: [
-        { id: 'text', name: 'bla', type: 'jsx' },
-        { id: 'dir', name: 'first folder', isDir: true },
-      ],
+  const [fileStructure, setFileStructure] = useState<FileSystemCollection>({
+    t: { content: {} },
+    desktop: {
+      content: {
+        text: { extension: 'jsx' },
+        ss: { extension: 'jsx' },
+        dd: { extension: 'jsx' },
+        xx: { extension: 'jsx' },
+        'should be folder': {
+          content: {
+            text: { extension: 'jsx' },
+            ss: { extension: 'jsx' },
+            dd: { extension: 'jsx' },
+            xx: { extension: 'jsx' },
+            nested: {
+              content: { test2: { extension: 'txt' } },
+            },
+          },
+        },
+      },
     },
-    {
-      id: 'startMenu',
-      name: 'startMenu',
-      isDir: true,
-      content: [{ id: 'test2', name: 'muhahaha', type: 'txt' }],
+    startMenu: {
+      content: { test2: { extension: 'txt' } },
     },
-  ]);
+  });
 
   const initializeFileSystem = (room: Room): void => {
     room.onMessage('updateFileSystem', (message) => {
@@ -54,10 +65,11 @@ export const useFileSystem = (url: string): { files: FileSystemCollection } => {
     if (urlPart === '') {
       continue;
     }
-    for (const nestedFile of files) {
-      if (!nestedFile.content || nestedFile.name !== urlPart) {
+    for (const [id, nestedFile] of Object.entries(files)) {
+      if (!('content' in nestedFile) || id !== urlPart) {
         continue;
       }
+
       files = nestedFile.content;
       break;
     }

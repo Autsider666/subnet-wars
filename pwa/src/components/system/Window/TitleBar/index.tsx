@@ -20,7 +20,7 @@ const TitleBar = ({ id }: TitleBarProps): JSX.Element => {
     processes: {
       [id]: {
         autoSizing = false,
-        // icon = '',
+        icon,
         lockAspectRatio = false,
         title = '',
         maximized = false,
@@ -35,9 +35,12 @@ const TitleBar = ({ id }: TitleBarProps): JSX.Element => {
 
   return (
     <StyledTitleBar className="handle" foreground={isForeground}>
-      <h1 onClick={disableMaximize ? undefined : maximizeClick}>
+      <h1
+        onClick={disableMaximize ? undefined : maximizeClick}
+        onKeyPress={disableMaximize ? undefined : maximizeClick}
+      >
         <figure>
-          {/*<Icon src={icon} alt={title} onClick={useDoubleClick(onClose)} imgSize={16} />*/}
+          {icon()}
           <figcaption>{title}</figcaption>
         </figure>
       </h1>

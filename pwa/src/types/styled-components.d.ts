@@ -34,6 +34,16 @@ declare module 'styled-components' {
         text: string;
         textInactive: string;
       };
+      fileEntry: {
+        background: string;
+        backgroundFocused: string;
+        backgroundFocusedHover: string;
+        border: string;
+        borderFocused: string;
+        borderFocusedHover: string;
+        text: string;
+        textShadow: string;
+      };
     };
     sizes: {
       taskbar: {
@@ -68,6 +78,17 @@ declare module 'styled-components' {
         cascadeOffset: number;
         lineHeight: string;
         outline: string;
+      };
+
+      fileEntry: {
+        fontSize: string;
+        iconSize: string;
+      };
+      fileManager: {
+        gridEntryHeight: string;
+        gridEntryWidth: string;
+        padding: string;
+        rowGap: string;
       };
     };
   }

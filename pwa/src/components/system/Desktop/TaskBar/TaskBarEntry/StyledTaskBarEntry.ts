@@ -53,7 +53,7 @@ const StyledTaskBarEntry = styled.li<StyledTaskBarEntryProps>`
       white-space: nowrap;
     }
 
-    img {
+    svg {
       height: ${({ theme }) => theme.sizes.taskbar.entry.icon.size};
       position: relative;
       top: 1px;

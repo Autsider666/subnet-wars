@@ -33,6 +33,24 @@ const defaultTheme: DefaultTheme = {
       text: 'rgb(255, 255, 255)',
       textInactive: 'rgb(170, 170, 170)',
     },
+    fileEntry: {
+      background: `hsl(207deg 30% 72% / 25%)`,
+      backgroundFocused: `hsl(207deg 60% 72% / 30%)`,
+      backgroundFocusedHover: `hsl(207deg 90% 72% / 35%)`,
+      border: 'hsl(207deg 30% 72% / 30%)',
+      borderFocused: 'hsl(207deg 60% 72% / 35%)',
+      borderFocusedHover: 'hsl(207deg 90% 72% / 40%)',
+      text: '#FFF',
+      textShadow: `
+      0 0 1px rgba(0, 0, 0, 75%),
+      0 0 2px rgba(0, 0, 0, 50%),
+
+      0 1px 1px rgba(0, 0, 0, 75%),
+      0 1px 2px rgba(0, 0, 0, 50%),
+
+      0 2px 1px rgba(0, 0, 0, 75%),
+      0 2px 2px rgba(0, 0, 0, 50%)`,
+    },
   },
   sizes: {
     taskbar: {
@@ -67,6 +85,16 @@ const defaultTheme: DefaultTheme = {
       cascadeOffset: 26,
       lineHeight: '14px',
       outline: '1px',
+    },
+    fileEntry: {
+      fontSize: '12px',
+      iconSize: '48px',
+    },
+    fileManager: {
+      gridEntryHeight: '70px',
+      gridEntryWidth: '74px',
+      padding: '5px 0',
+      rowGap: '28px',
     },
   },
 };

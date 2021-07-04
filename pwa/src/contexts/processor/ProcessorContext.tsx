@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { Processes, ProcessElement } from 'contexts/processor/types';
 import {
+  changeProcessUrl,
   closeProcess,
   maximizeProcess,
   minimizeProcess,
@@ -16,6 +17,7 @@ export interface ProcessorFunctions {
   close: (id: string, closing?: boolean) => void;
   maximize: (id: string) => void;
   minimize: (id: string) => void;
+  changeUrl: (id: string, url: string) => void;
   linkElement: (id: string, name: keyof ProcessElement, element: HTMLElement) => void;
 }
 
@@ -40,6 +42,10 @@ export const ProcessorContextWrapper = ({ children }: { children: ReactNode }): 
       setProcesses(setProcessElement(id, name, element)),
     []
   );
+  const changeUrl = useCallback(
+    (id: string, url: string) => setProcesses(changeProcessUrl(id, url)),
+    []
+  );
 
   return (
     <ProcessorContext.Provider
@@ -51,6 +57,7 @@ export const ProcessorContextWrapper = ({ children }: { children: ReactNode }): 
         maximize,
         minimize,
         linkElement,
+        changeUrl,
       }}
     >
       {children}

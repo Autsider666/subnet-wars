@@ -2,16 +2,11 @@ export const LogoIcon = (): JSX.Element => (
   <svg className="Icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <defs>
       <filter id="shadow" height="300%" width="300%" x="-100%" y="-100%">
-        <feFlood floodColor="rgba(97, 137, 47, 1)" result="flood"></feFlood>
-        <feComposite
-          in="flood"
-          in2="SourceGraphic"
-          operator="atop"
-          result="composite"
-        ></feComposite>
-        <feGaussianBlur in="composite" stdDeviation="15" result="blur"></feGaussianBlur>
-        <feOffset dx="0" dy="0" result="offset"></feOffset>
-        <feComposite in="SourceGraphic" in2="offset" operator="over"></feComposite>
+        <feFlood floodColor="rgba(97, 137, 47, 1)" result="flood" />
+        <feComposite in="flood" in2="SourceGraphic" operator="atop" result="composite" />
+        <feGaussianBlur in="composite" stdDeviation="15" result="blur" />
+        <feOffset dx="0" dy="0" result="offset" />
+        <feComposite in="SourceGraphic" in2="offset" operator="over" />
       </filter>
     </defs>
     <g>
@@ -20,7 +15,7 @@ export const LogoIcon = (): JSX.Element => (
         fill="#61892f"
         fillOpacity="0.90"
         filter="url(#shadow)"
-      ></path>
+      />
     </g>
     <g
       fontFamily="monospace"
@@ -48,6 +43,28 @@ export const LogoIcon = (): JSX.Element => (
           </tspan>
         </text>
       </g>
+    </g>
+  </svg>
+);
+
+export const DirectoryIcon = (): JSX.Element => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <g>
+      <path
+        d="M41 73v304.563L88.697 151H423v-30H185.514l-16-48H41zm62.303 96L43.092 455h381.605l60.211-286H103.303z"
+        fillOpacity="1"
+      />
+    </g>
+  </svg>
+);
+
+export const FileIcon = (): JSX.Element => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <g>
+      <path d="m446.606 94.394-90-90c-2.813-2.813-6.628-4.394-10.606-4.394h-270c-8.284 0-15 6.716-15 15v482c0 8.284 6.716 15 15 15h360c8.284 0 15-6.716 15-15v-392c0-3.978-1.581-7.794-4.394-10.606zm-85.606-43.181 38.787 38.787h-38.787zm-270 430.787v-452h240v75c0 8.284 6.716 15 15 15h75v362z" />
+      <path d="m283.846 185.988c-7.697-3.063-16.419.697-19.481 8.395l-44.605 112.147c-3.062 7.698.697 16.42 8.395 19.481 1.818.724 3.694 1.066 5.539 1.066 5.964 0 11.604-3.581 13.942-9.46l44.604-112.147c3.062-7.697-.697-16.42-8.394-19.482z" />
+      <path d="m351.148 197.558c-4.278-7.095-13.497-9.378-20.591-5.102-7.095 4.277-9.378 13.496-5.102 20.591l25.376 42.091-25.51 44.04c-4.152 7.168-1.707 16.346 5.461 20.498 2.367 1.371 4.953 2.023 7.504 2.023 5.177 0 10.213-2.683 12.994-7.484l29.953-51.711c2.741-4.732 2.689-10.58-.134-15.263z" />
+      <path d="m161.168 255.139 25.376-42.091c4.277-7.095 1.993-16.313-5.102-20.591s-16.314-1.994-20.591 5.102l-29.953 49.684c-2.823 4.683-2.875 10.531-.134 15.263l29.953 51.711c2.782 4.802 7.817 7.484 12.994 7.484 2.551 0 5.138-.652 7.504-2.023 7.169-4.152 9.613-13.33 5.461-20.498z" />
     </g>
   </svg>
 );

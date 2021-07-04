@@ -27,7 +27,7 @@ const StartMenu = (): JSX.Element => {
   return (
     <StyledStartMenu onBlur={maybeCloseMenu} tabIndex={-1} ref={menuRef}>
       <SideBar />
-      <FileView url={'/startMenu'} listDisplay={true} compact={true} />
+      <FileView url={'/startMenu'} compact={true} />
     </StyledStartMenu>
   );
 };

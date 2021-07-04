@@ -28,7 +28,7 @@ export const closeProcess =
   };
 
 export const createPid = (processId: string, url: string): string =>
-  url ? `${processId}-${url}` : processId;
+  url ? `${processId}-${url}-${Math.random()}` : processId;
 
 export const openProcess =
   (processId: string, url: string) =>
@@ -64,6 +64,13 @@ export const minimizeProcess =
   (currentProcesses: Processes): Processes =>
     setProcessSettings(processId, {
       minimized: !currentProcesses[processId].minimized,
+    })(currentProcesses);
+
+export const changeProcessUrl =
+  (processId: string, url: string) =>
+  (currentProcesses: Processes): Processes =>
+    setProcessSettings(processId, {
+      url,
     })(currentProcesses);
 
 export const setProcessElement =

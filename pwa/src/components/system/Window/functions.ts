@@ -30,13 +30,6 @@ export const cascadePosition = (
 export const centerPosition = ({ height, width }: Size, taskbarHeight: string): Position => {
   const { innerHeight: vh, innerWidth: vw } = window;
 
-  console.log(
-    vh,
-    vw,
-    Math.floor((vh - pxToNum(taskbarHeight)) / 2 - pxToNum(height) / 2),
-    Math.floor(vw / 2 - pxToNum(width) / 2)
-  );
-
   return {
     x: Math.floor(vw / 2 - pxToNum(width) / 2),
     y: Math.floor((vh - pxToNum(taskbarHeight)) / 2 - pxToNum(height) / 2),
