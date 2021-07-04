@@ -15,7 +15,7 @@ const StyledWindow = styled(motion.section)<StyledWindowProps>`
       foreground ? theme.colors.window.outline : theme.colors.window.outlineInactive
     }`};
   overflow: hidden;
-  position: absolute;
+  position: relative;
   width: 100%;
 
   > div {

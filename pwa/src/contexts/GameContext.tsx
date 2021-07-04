@@ -54,7 +54,6 @@ export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.E
     }
     (async (): Promise<void> => {
       const { status, data } = await axios.post<RoomReservation>('/api/refresh');
-      console.log(status);
       if (status !== 200) {
         setAuthenticated(false);
       } else {

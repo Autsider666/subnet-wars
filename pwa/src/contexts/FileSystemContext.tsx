@@ -39,8 +39,6 @@ export const FileSystemWrapper = ({ children }: { children: ReactNode }): JSX.El
       console.log(message);
       setFileStructure(message);
     });
-
-    console.log('File system initalized');
   };
   return (
     <FileSystemContext.Provider value={{ initializeFileSystem, fileStructure }}>

@@ -6,7 +6,6 @@ import { useSystem } from 'contexts/SystemContext';
 import { Dispatch, SetStateAction, useState } from 'react';
 import type { Position } from 'react-rnd';
 import { useTheme } from 'styled-components';
-import { DEFAULT_WINDOW_POSITION } from 'utils/constants';
 
 type Draggable = [Position, Dispatch<SetStateAction<Position>>];
 
@@ -26,8 +25,7 @@ const useDraggable = (id: string, size: Size): Draggable => {
   const [{ x, y }, setPosition] = useState<Position>(
     position ||
       cascadePosition(id, processes, stackOrder, cascadeOffset) ||
-      centerPosition(size, taskbarHeight) ||
-      DEFAULT_WINDOW_POSITION
+      centerPosition(size, taskbarHeight)
   );
 
   return [{ x, y }, setPosition];

@@ -118,8 +118,8 @@ const StyledLoader = styled.div<LoadedProps>`
     -ms-transform: translateX(-100%); /* IE 9 */
     transform: translateX(-100%); /* Firefox 16+, IE 10+, Opera */
 
-    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    -webkit-transition: all 0.1s 0.05s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    transition: all 0.1s 0.05s cubic-bezier(0.645, 0.045, 0.355, 1.000);
   }
 
   .loader-section.section-right {
@@ -127,8 +127,8 @@ const StyledLoader = styled.div<LoadedProps>`
     -ms-transform: translateX(100%); /* IE 9 */
     transform: translateX(100%); /* Firefox 16+, IE 10+, Opera */
 
-    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    -webkit-transition: all 0.1s 0.05s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    transition: all 0.1s 0.05s cubic-bezier(0.645, 0.045, 0.355, 1.000);
   }
 
   #loader {

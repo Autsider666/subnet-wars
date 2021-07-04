@@ -1,10 +1,4 @@
-import { Position } from 'react-rnd';
 import { Size } from 'components/system/Window/RndWindow/useResizable';
-
-export const DEFAULT_WINDOW_POSITION: Position = {
-  x: 0,
-  y: 0,
-};
 
 export const DEFAULT_WINDOW_SIZE: Size = {
   height: '200px',
