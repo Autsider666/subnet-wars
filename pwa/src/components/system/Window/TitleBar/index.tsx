@@ -1,4 +1,4 @@
-import useDoubleClick from 'components/system/useDoubleClick';
+// import useDoubleClick from 'components/system/useDoubleClick';
 import StyledTitleBar from 'components/system/Window/TitleBar/StyledTitleBar';
 import useWindowActions from 'components/system/Window/TitleBar/useWindowActions';
 import {
@@ -20,7 +20,7 @@ const TitleBar = ({ id }: TitleBarProps): JSX.Element => {
     processes: {
       [id]: {
         autoSizing = false,
-        icon,
+        icon = () => <div>loading</div>,
         lockAspectRatio = false,
         title = '',
         maximized = false,
@@ -31,13 +31,13 @@ const TitleBar = ({ id }: TitleBarProps): JSX.Element => {
   const isForeground = id === foregroundId;
   const { onClose, onMaximize, onMinimize } = useWindowActions(id);
   const disableMaximize = autoSizing && !lockAspectRatio;
-  const maximizeClick = useDoubleClick(onMaximize);
+  // const maximizeClick = useDoubleClick(onMaximize);
 
   return (
     <StyledTitleBar className="handle" foreground={isForeground}>
       <h1
-        onClick={disableMaximize ? undefined : maximizeClick}
-        onKeyPress={disableMaximize ? undefined : maximizeClick}
+      // onClick={disableMaximize ? undefined : maximizeClick}
+      // onKeyPress={disableMaximize ? undefined : maximizeClick}
       >
         <figure>
           {icon()}

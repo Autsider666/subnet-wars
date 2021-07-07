@@ -11,4 +11,4 @@ export const PROCESS_DELIMITER = '__';
 
 export const DOUBLE_CLICK_TIMEOUT_IN_MILLISECONDS = 500;
 
-export const SHORTCUT_EXTENSION = '.url';
+export const SHORTCUT_EXTENSION = '.uri';

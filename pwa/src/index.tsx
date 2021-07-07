@@ -8,7 +8,7 @@ import { SystemContextWrapper } from 'contexts/SystemContext';
 import themes from 'styles/themes';
 import GlobalStyle from 'styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
-import { FileSystemWrapper } from 'contexts/FileSystemContext';
+import { FileSystemProvider } from 'contexts/FileSystemContext';
 import { ProcessorContextWrapper } from 'contexts/processor/ProcessorContext';
 
 ReactDOM.render(
@@ -17,11 +17,11 @@ ReactDOM.render(
       <GlobalStyle />
       <SystemContextWrapper>
         <ProcessorContextWrapper>
-          <FileSystemWrapper>
+          <FileSystemProvider>
             <GameContextWrapper>
               <App />
             </GameContextWrapper>
-          </FileSystemWrapper>
+          </FileSystemProvider>
         </ProcessorContextWrapper>
       </SystemContextWrapper>
     </ThemeProvider>

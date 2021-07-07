@@ -1,33 +1,48 @@
-import { FileExplorerPid } from 'components/apps/FileExplorer';
 import useFile from 'components/system/Files/FileEntry/useFile';
 import useDoubleClick from 'components/system/useDoubleClick';
-import { File, Directory } from 'contexts/FileSystemContext';
 import StyledFileEntry from 'components/system/Files/FileEntry/StyledFileEntry';
-import { basename } from 'path';
+import { isDirectory } from 'contexts/FileSystemContext/functions';
+import { FileSystemEntry } from 'contexts/FileSystemContext/types';
+import processRegistry from 'contexts/processor/processRegistry';
+import { basename, extname } from 'path';
 import Button from 'styles/common/Button';
 import { DirectoryIcon, FileIcon } from 'styles/icons/general';
 import { SHORTCUT_EXTENSION } from 'utils/constants';
 
 interface props {
-  entity: File | Directory;
-  url: string;
+  entry: FileSystemEntry;
   onDirectoryClick?: (url: string) => void;
 }
 
-const Icon = ({ entity }: { entity: File | Directory }): JSX.Element =>
-  'content' in entity ? <DirectoryIcon /> : <FileIcon />;
+const Icon = ({ entry }: { entry: FileSystemEntry }): JSX.Element => {
+  if (isDirectory(entry)) {
+    return <DirectoryIcon />;
+  }
 
-const FileEntry = ({ entity, url, onDirectoryClick }: props): JSX.Element => {
-  const openFile = useFile(url);
+  if (extname(entry.path) === SHORTCUT_EXTENSION) {
+    const [pid] = (entry.content as string).split(':');
+    const { icon } = processRegistry[pid];
+    if (icon) {
+      return icon();
+    }
+  }
+  return <FileIcon />;
+};
+
+const FileEntry = ({ entry, onDirectoryClick }: props): JSX.Element => {
+  const url = entry.path;
+  const openFile = useFile(entry);
   return (
     <StyledFileEntry>
       <Button
         onClick={useDoubleClick(() =>
-          onDirectoryClick ? onDirectoryClick(url) : openFile(FileExplorerPid)
+          onDirectoryClick
+            ? onDirectoryClick(url)
+            : openFile(isDirectory(entry) ? 'FileExplorer' : (entry.content as string))
         )}
       >
         <figure title={url}>
-          <Icon entity={entity} />
+          <Icon entry={entry} />
           <figcaption>{basename(url, SHORTCUT_EXTENSION)}</figcaption>
         </figure>
       </Button>

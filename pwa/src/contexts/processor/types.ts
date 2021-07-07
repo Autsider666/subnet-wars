@@ -23,5 +23,3 @@ export interface Process extends ProcessElement {
 }
 
 export type Processes = { [id: string]: Process };
-
-export type Pid = { id: string };

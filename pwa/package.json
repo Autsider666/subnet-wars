@@ -15,6 +15,7 @@
     "colyseus.js": "^0.14.12",
     "framer-motion": "^4.1.17",
     "html-to-image": "^1.6.2",
+    "lodash": "^4.17.21",
     "prettier": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -38,6 +39,7 @@
     "workbox-streams": "^5.1.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.171",
     "eslint": "^7.29.0",
     "eslint-config-next": "11.0.0",
     "eslint-config-prettier": "^8.3.0",

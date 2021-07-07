@@ -1,22 +1,25 @@
+import { FileSystemEntry } from 'contexts/FileSystemContext/types';
 import { createPid } from 'contexts/processor/functions';
 import { useProcessor } from 'contexts/processor/ProcessorContext';
-import { Pid } from 'contexts/processor/types';
 import { useSystem } from 'contexts/SystemContext';
 
-type UseFile = (pid: Pid) => void;
+type UseFile = (pid: string) => void;
 
-const useFile = (url: string): UseFile => {
+const useFile = (entry: FileSystemEntry): UseFile => {
   const { setForegroundId } = useSystem();
   const { minimize, open, processes } = useProcessor();
+  const url = entry.path;
 
-  return (pid: Pid): void => {
-    const id = createPid(pid.id, url);
+  return (uri: string): void => {
+    const [pid, params] = uri.split(':');
+    console.log(uri, pid, params, url);
+    const id = createPid(pid, params || url);
 
     if (processes[id]) {
       if (processes[id].minimized) minimize(id);
       setForegroundId(id);
     } else {
-      open(pid.id, url);
+      open(pid, url);
     }
   };
 };

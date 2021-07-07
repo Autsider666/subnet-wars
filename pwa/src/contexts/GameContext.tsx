@@ -1,8 +1,8 @@
-import { Context, createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { Context, createContext, ReactNode, useEffect, useState } from 'react';
 import { Client, Room } from 'colyseus.js';
 import axios from 'axios';
 import { useSystem } from 'contexts/SystemContext';
-import { FileSystemContext } from 'contexts/FileSystemContext';
+import { useFileSystem } from 'contexts/FileSystemContext';
 
 export type RoomReservation = {
   sessionId: string;
@@ -23,7 +23,7 @@ type GameClient = {
 };
 
 let client: Client;
-let osRoom: Room | null;
+let osRoom: Room | null = null;
 
 const gameFunctions = {
   consumeSeatReservation: async (reservation: RoomReservation | null): Promise<Room | null> => {
@@ -43,13 +43,13 @@ export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.E
   const [connected, setConnected] = useState(false);
   // const [state, setState] = useState<GameState | null>(null);
   const { authenticated, setAuthenticated } = useSystem();
-  const { initializeFileSystem } = useContext(FileSystemContext);
+  const { initializeFileSystem } = useFileSystem();
 
   if (typeof window !== 'undefined') {
     client = new Client(`wss://${window.location.hostname}/api`);
   }
   useEffect(() => {
-    if (!authenticated) {
+    if (!authenticated || osRoom !== null) {
       return;
     }
     (async (): Promise<void> => {
