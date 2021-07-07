@@ -36,9 +36,15 @@ const FileEntry = ({ entry, onDirectoryClick }: props): JSX.Element => {
     <StyledFileEntry>
       <Button
         onClick={useDoubleClick(() =>
-          onDirectoryClick
+          onDirectoryClick && isDirectory(entry)
             ? onDirectoryClick(url)
-            : openFile(isDirectory(entry) ? 'FileExplorer' : (entry.content as string))
+            : openFile(
+                isDirectory(entry)
+                  ? 'FileExplorer'
+                  : extname(entry.path) === SHORTCUT_EXTENSION
+                  ? (entry.content as string)
+                  : 'FileReader'
+              )
         )}
       >
         <figure title={url}>
