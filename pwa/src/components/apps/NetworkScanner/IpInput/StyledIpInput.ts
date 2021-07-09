@@ -5,7 +5,7 @@ export default styled.div`
   display: inline-block;
   border: 1px solid #c2c3c9;
   border-radius: 4px;
-  padding: 5px 8px;
+  padding: 0px 8px;
 
   div {
     display: inline-block;
@@ -18,6 +18,7 @@ export default styled.div`
 
   input {
     width: 30px;
+    height: 30px;
     border: none;
     outline: none;
     text-align: center;

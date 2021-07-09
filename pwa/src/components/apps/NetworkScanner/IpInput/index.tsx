@@ -14,13 +14,15 @@ const IpInput = ({ onChange }: { onChange: (ip: string) => void }): JSX.Element 
 
   const getIpSegments = (value: string = ip): string[] => value.split('.');
 
+  let cachedIp = ip;
   const changeIp = (newIpSegment: number | string, i: number): void => {
-    const newIpSegments: (number | string)[] = getIpSegments();
+    const newIpSegments: (number | string)[] = getIpSegments(cachedIp);
     newIpSegments[i] = newIpSegment;
     const newIp = newIpSegments
       .map((ipSegment) => (Number.isNaN(ipSegment) ? '' : ipSegment))
       .join('.');
     onChange(newIp);
+    cachedIp = newIp;
     setIp(newIp);
   };
 
@@ -70,10 +72,9 @@ const IpInput = ({ onChange }: { onChange: (ip: string) => void }): JSX.Element 
       return;
     }
 
-    const value = getIpSegments(pasteData).map((v) => parseInt(v));
-    if (value.length !== 4 - i) {
-      return;
-    }
+    const value = getIpSegments(pasteData)
+      .map((v) => parseInt(v))
+      .splice(0, 4 - i);
 
     if (!value.every(isValidIPItemValue)) {
       return;
