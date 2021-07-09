@@ -1,4 +1,4 @@
-import { Processes } from 'contexts/processor/types';
+import { Processes } from 'contexts/ProcessorContext/types';
 import { lazy } from 'react';
 import { DirectoryIcon, ReaderIcon, ScanIcon } from 'styles/icons/general';
 

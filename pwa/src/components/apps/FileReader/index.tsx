@@ -1,6 +1,6 @@
 import type { ComponentProcessProps } from 'components/system/Apps/RenderComponent';
 import { useFileSystem } from 'contexts/FileSystemContext';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useEffect } from 'react';
 
 const FileReader = ({ id }: ComponentProcessProps): JSX.Element => {

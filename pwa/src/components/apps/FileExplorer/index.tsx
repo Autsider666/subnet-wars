@@ -1,6 +1,6 @@
 import type { ComponentProcessProps } from 'components/system/Apps/RenderComponent';
 import FileView from 'components/system/Files/FileView';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useEffect } from 'react';
 
 const FileExplorer = ({ id }: ComponentProcessProps): JSX.Element => {

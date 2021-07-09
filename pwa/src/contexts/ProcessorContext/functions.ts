@@ -1,5 +1,5 @@
-import processRegistry from 'contexts/processor/processRegistry';
-import type { Process, ProcessElement, Processes } from 'contexts/processor/types';
+import processRegistry from 'contexts/ProcessorContext/processRegistry';
+import type { Process, ProcessElement, Processes } from 'contexts/ProcessorContext/types';
 
 export const setProcessSettings =
   (processId: string, settings: Partial<Process>) =>

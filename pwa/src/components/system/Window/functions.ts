@@ -1,6 +1,6 @@
 import type { Size } from 'components/system/Window/RndWindow/useResizable';
-import type { Processes } from 'contexts/processor/types';
-import type { ProcessorFunctions } from 'contexts/processor/ProcessorContext';
+import type { Processes } from 'contexts/ProcessorContext/types';
+import type { ProcessorFunctions } from 'contexts/ProcessorContext';
 import type { Position } from 'react-rnd';
 import { PROCESS_DELIMITER, WINDOW_TRANSITION_DURATION_IN_MILLISECONDS } from 'utils/constants';
 import { pxToNum } from 'utils/functions';

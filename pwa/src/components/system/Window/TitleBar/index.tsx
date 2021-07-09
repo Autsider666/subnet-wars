@@ -7,7 +7,7 @@ import {
   MaximizeIcon,
   MinimizeIcon,
 } from 'components/system/Window/TitleBar/WindowActionIcons';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useSystem } from 'contexts/SystemContext';
 import Button from 'styles/common/Button';
 

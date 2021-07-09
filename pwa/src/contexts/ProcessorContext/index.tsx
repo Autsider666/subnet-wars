@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
-import { Processes, ProcessElement } from 'contexts/processor/types';
+import { Processes, ProcessElement } from 'contexts/ProcessorContext/types';
 import {
   changeProcessUrl,
   closeProcess,
@@ -8,7 +8,7 @@ import {
   openProcess,
   setProcessElement,
   setTitle,
-} from 'contexts/processor/functions';
+} from 'contexts/ProcessorContext/functions';
 
 export interface ProcessorFunctions {
   title: (id: string, newTitle: string) => void;

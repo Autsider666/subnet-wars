@@ -1,8 +1,8 @@
 import { Size } from 'components/system/Window/RndWindow/useResizable';
 
 export const DEFAULT_WINDOW_SIZE: Size = {
-  height: '200px',
-  width: '250px',
+  height: '400px',
+  width: '500px',
 };
 
 export const WINDOW_TRANSITION_DURATION_IN_MILLISECONDS = 250;

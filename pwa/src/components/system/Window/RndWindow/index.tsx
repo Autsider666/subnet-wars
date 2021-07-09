@@ -1,5 +1,5 @@
 import useRnd from 'components/system/Window/RndWindow/useRnd';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useSystem } from 'contexts/SystemContext';
 import { ReactNode, useEffect, useRef } from 'react';
 import { Rnd } from 'react-rnd';

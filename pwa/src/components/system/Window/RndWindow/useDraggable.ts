@@ -1,6 +1,6 @@
 import { cascadePosition, centerPosition } from 'components/system/Window/functions';
 import type { Size } from 'components/system/Window/RndWindow/useResizable';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useSystem } from 'contexts/SystemContext';
 
 import { Dispatch, SetStateAction, useState } from 'react';

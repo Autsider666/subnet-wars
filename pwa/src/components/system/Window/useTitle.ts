@@ -1,5 +1,5 @@
-import { useProcessor } from 'contexts/processor/ProcessorContext';
-import processRegistry from 'contexts/processor/processRegistry';
+import { useProcessor } from 'contexts/ProcessorContext';
+import processRegistry from 'contexts/ProcessorContext/processRegistry';
 import { basename } from 'path';
 import { useCallback } from 'react';
 import { PROCESS_DELIMITER } from 'utils/constants';

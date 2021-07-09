@@ -3,7 +3,7 @@ import useDoubleClick from 'components/system/useDoubleClick';
 import StyledFileEntry from 'components/system/Files/FileEntry/StyledFileEntry';
 import { isDirectory } from 'contexts/FileSystemContext/functions';
 import { FileSystemEntry } from 'contexts/FileSystemContext/types';
-import processRegistry from 'contexts/processor/processRegistry';
+import processRegistry from 'contexts/ProcessorContext/processRegistry';
 import { basename, extname } from 'path';
 import Button from 'styles/common/Button';
 import { DirectoryIcon, FileIcon } from 'styles/icons/general';

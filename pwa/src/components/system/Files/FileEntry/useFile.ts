@@ -1,6 +1,6 @@
 import { FileSystemEntry } from 'contexts/FileSystemContext/types';
-import { createPid } from 'contexts/processor/functions';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { createPid } from 'contexts/ProcessorContext/functions';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useSystem } from 'contexts/SystemContext';
 
 type UseFile = (pid: string) => void;

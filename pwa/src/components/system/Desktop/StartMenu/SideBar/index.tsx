@@ -7,7 +7,7 @@ import {
 import StyledSidebar from 'components/system/Desktop/StartMenu/SideBar/StyledSidebar';
 import StyledSidebarButton from 'components/system/Desktop/StartMenu/SideBar/StyledSidebarButton';
 import { SystemState, useSystem } from 'contexts/SystemContext';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 
 type SideBarButtonProps = {
   active?: boolean;

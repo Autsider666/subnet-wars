@@ -4,7 +4,7 @@ import StyledWindow from 'components/system/Window/StyledWindow';
 import TitleBar from 'components/system/Window/TitleBar';
 import useFocusable from 'components/system/Window/useFocusable';
 import useWindowTransitions from 'components/system/Window/useWindowTransitions';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useSystem } from 'contexts/SystemContext';
 import { ReactNode } from 'react';
 

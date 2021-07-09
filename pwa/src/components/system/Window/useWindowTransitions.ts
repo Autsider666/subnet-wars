@@ -1,4 +1,4 @@
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import type { MotionProps, Variant } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';

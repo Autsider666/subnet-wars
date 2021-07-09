@@ -1,6 +1,6 @@
 import { closeWithTransition } from 'components/system/Window/functions';
 import useNextFocusable from 'components/system/Window/useNextFocusable';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useSystem } from 'contexts/SystemContext';
 
 type WindowActions = {

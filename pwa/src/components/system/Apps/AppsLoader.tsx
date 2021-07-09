@@ -1,6 +1,6 @@
 import RenderComponent from 'components/system/Apps/RenderComponent';
 import { AnimatePresence } from 'framer-motion';
-import { ProcessorConsumer } from 'contexts/processor/ProcessorContext';
+import { ProcessorConsumer } from 'contexts/ProcessorContext';
 
 const AppsLoader = (): JSX.Element => (
   <>

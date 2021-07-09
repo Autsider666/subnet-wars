@@ -9,7 +9,7 @@ import themes from 'styles/themes';
 import GlobalStyle from 'styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { FileSystemProvider } from 'contexts/FileSystemContext';
-import { ProcessorContextWrapper } from 'contexts/processor/ProcessorContext';
+import { ProcessorContextWrapper } from 'contexts/ProcessorContext';
 
 ReactDOM.render(
   <React.StrictMode>

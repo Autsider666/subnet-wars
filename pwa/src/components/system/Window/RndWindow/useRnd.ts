@@ -1,7 +1,7 @@
 import rndDefaults from 'components/system/Window/RndWindow/rndDefaults';
 import useDraggable from 'components/system/Window/RndWindow/useDraggable';
 import useResizable from 'components/system/Window/RndWindow/useResizable';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import type { DraggableEventHandler } from 'react-draggable';
 import type { Props, RndResizeCallback } from 'react-rnd';
 

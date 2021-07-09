@@ -1,5 +1,5 @@
 import { useSystem } from 'contexts/SystemContext';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 
 const useNextFocusable = (id: string): string => {
   const { stackOrder } = useSystem();

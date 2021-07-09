@@ -1,7 +1,7 @@
 import StyledPeekWindow from 'components/system/Desktop/TaskBar/TaskBarEntry/Peek/StyledPeekWindow';
 import useWindowActions from 'components/system/Window/TitleBar/useWindowActions';
 import { CloseIcon } from 'components/system/Window/TitleBar/WindowActionIcons';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import Button from 'styles/common/Button';
 
 type PeekWindowProps = {

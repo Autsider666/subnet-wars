@@ -1,6 +1,6 @@
 import { FocusEventHandler, FocusEvent, useCallback, useEffect } from 'react';
 import { useSystem } from 'contexts/SystemContext';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 
 type Events = {
   onBlur: (event: FocusEvent<HTMLElement>) => void;

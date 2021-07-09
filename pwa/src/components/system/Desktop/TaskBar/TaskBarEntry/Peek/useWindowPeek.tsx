@@ -1,5 +1,5 @@
 import PeekWindow from 'components/system/Desktop/TaskBar/TaskBarEntry/Peek/PeekWindow';
-import { useProcessor } from 'contexts/processor/ProcessorContext';
+import { useProcessor } from 'contexts/ProcessorContext';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 type WindowPeek = {
