@@ -1,3 +1,4 @@
+import IpInput from 'components/apps/NetworkScanner/IpInput';
 import type { ComponentProcessProps } from 'components/system/Apps/RenderComponent';
 
 const NetworkScanner = ({ id }: ComponentProcessProps): JSX.Element => {
@@ -6,8 +7,15 @@ const NetworkScanner = ({ id }: ComponentProcessProps): JSX.Element => {
   //     title(id, url);
   //   }
   // }, [id, url, title]);
-
-  return <div>Scanning = {id}</div>;
+  console.log(id);
+  return (
+    <>
+      <div>
+        IP:
+        <IpInput onChange={(ip) => console.log('new', ip)} />
+      </div>
+    </>
+  );
 };
 
 export default NetworkScanner;
