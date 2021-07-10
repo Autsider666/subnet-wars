@@ -1,4 +1,4 @@
-import { Context, createContext, ReactNode, useEffect, useState } from 'react';
+import { Context, createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { Client, Room } from 'colyseus.js';
 import axios from 'axios';
 import { useSystem } from 'contexts/SystemContext';
@@ -14,34 +14,35 @@ export type RoomReservation = {
   };
 };
 
-// type GameState = {
-//   username: string;
-// };
+type GameState = {
+  username: string;
+  ip: string;
+};
 
 type GameClient = {
-  consumeSeatReservation: (reservation: RoomReservation) => Promise<Room | null>;
+  state: GameState;
 };
 
 let client: Client;
 let osRoom: Room | null = null;
 
-const gameFunctions = {
-  consumeSeatReservation: async (reservation: RoomReservation | null): Promise<Room | null> => {
-    if (!client) {
-      return null;
-    }
+const consumeSeatReservation = async (
+  reservation: RoomReservation | null
+): Promise<Room | null> => {
+  if (!client) {
+    return null;
+  }
 
-    const room = await client.consumeSeatReservation(reservation);
-    console.log('joined successfully', room);
-    return room;
-  },
+  const room = await client.consumeSeatReservation(reservation);
+  console.log('joined successfully', room);
+  return room;
 };
 
-export const GameContext: Context<GameClient> = createContext<GameClient>(gameFunctions);
+export const GameContext: Context<GameClient> = createContext<GameClient>({} as GameClient);
 
 export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
   const [connected, setConnected] = useState(false);
-  // const [state, setState] = useState<GameState | null>(null);
+  const [state, setState] = useState<GameState>({ ip: 'Loading...', username: 'Loading...' });
   const { authenticated, setAuthenticated } = useSystem();
   const { initializeFileSystem } = useFileSystem();
 
@@ -58,8 +59,8 @@ export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.E
         setAuthenticated(false);
       } else {
         if (data) {
-          osRoom = await gameFunctions.consumeSeatReservation(data);
-          // osRoom?.onStateChange((state) => setState(state));
+          osRoom = await consumeSeatReservation(data);
+          osRoom?.onStateChange((state) => setState(state));
           if (osRoom !== null) {
             initializeFileSystem(osRoom);
           }
@@ -75,5 +76,7 @@ export const GameContextWrapper = ({ children }: { children: ReactNode }): JSX.E
     }
   }, [connected, authenticated]);
 
-  return <GameContext.Provider value={gameFunctions}>{children}</GameContext.Provider>;
+  return <GameContext.Provider value={{ state }}>{children}</GameContext.Provider>;
 };
+
+export const useGameState = (): GameClient => useContext(GameContext);

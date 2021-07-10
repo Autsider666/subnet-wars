@@ -1,4 +1,4 @@
-import { Document, Model } from "mongoose";
+import { Document } from "mongoose";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
@@ -44,9 +44,3 @@ export const User = mongoose.model<UserDocument, UserModelInterface>(
   "User",
   UserSchema
 );
-
-// UserSchema.methods.build = async (
-//   attributes: UserAttributes
-// ): Promise<UserDocument> => {
-//   return new User(attributes);
-// };

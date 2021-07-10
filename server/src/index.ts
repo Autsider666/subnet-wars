@@ -4,7 +4,7 @@ import express from "express";
 import { monitor } from "@colyseus/monitor";
 import { OS } from "./rooms/OS";
 import cookieParser from "cookie-parser";
-import AuthRouter from "./Auth/AuthRouter";
+import AuthRouter from "./auth/AuthRouter";
 import Mongoose from "mongoose";
 
 const port = Number(process.env.port) || 2567;

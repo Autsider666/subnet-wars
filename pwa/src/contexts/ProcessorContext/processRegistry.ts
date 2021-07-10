@@ -10,7 +10,7 @@ const processRegistry: Processes = {
     title: 'File Explorer',
   },
   NetworkScanner: {
-    backgroundColor: '#202020',
+    backgroundColor: '#61892F',
     Component: lazy(() => import('components/apps/NetworkScanner')),
     icon: ScanIcon,
     title: 'Network Scanner',

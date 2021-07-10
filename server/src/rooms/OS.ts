@@ -1,4 +1,5 @@
 import { Room, Client } from 'colyseus';
+import { randomIp } from '../helpers/ipv4Generator';
 import * as http from 'http';
 import { OperatingSystemState } from './schema/OperatingSystemState';
 import { FileSystemEntry } from 'rooms/types';
@@ -7,6 +8,7 @@ export class OS extends Room<OperatingSystemState> {
     async onCreate(options: { username: string }) {
         this.setState(new OperatingSystemState());
         this.state.username = options.username;
+        this.state.ip = randomIp("192.168.1.0", 24);
 
         this.onMessage('type', (client, message) => {
             console.log(message, client);
@@ -36,6 +38,10 @@ export class OS extends Room<OperatingSystemState> {
         const desktopFilesUpdate: FileSystemEntry = {
             path: '/desktop', content: {
                 'second.txt': {path: '/desktop/second.txt', content: 'second test script'},
+                'Network Scanner.uri': {
+                    path: '/desktop/Network Scanner.uri',
+                    content: 'NetworkScanner'
+                }
             }
         };
         const nested: FileSystemEntry = {
