@@ -15,7 +15,8 @@ export const FileSystemProvider = ({ children }: { children: ReactNode }): JSX.E
   const [rootDirectory, setRootDirectory] = useState<FileSystemCollection>({});
 
   const initializeFileSystem = (room: Room): void => {
-    room.onMessage('updateFileSystem', (entry: FileSystemEntry) => {
+    room.onMessage('updateFileSystem', (entry: FileSystemEntry[]) => {
+      console.log(entry);
       const changes = insertIntoFileSystem(entry);
       const newState = merge(rootDirectory, changes);
       setRootDirectory(JSON.parse(JSON.stringify(newState)));

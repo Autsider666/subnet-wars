@@ -31,26 +31,27 @@ export const getFile = (
   return null;
 };
 
-export const insertIntoFileSystem = (entry: FileSystemEntry): FileSystemCollection => {
+export const insertIntoFileSystem = (entries: FileSystemEntry[]): FileSystemCollection => {
   const fileSystem: FileSystemCollection = {};
+  entries.forEach((entry) => {
+    const pathSteps = parsePath(entry.path);
 
-  const pathSteps = parsePath(entry.path);
+    const length = pathSteps.length;
+    let currentDir = fileSystem;
+    let currentPath = '';
 
-  const length = pathSteps.length;
-  let currentDir = fileSystem;
-  let currentPath = '';
+    pathSteps.forEach((key, index) => {
+      if (index === length - 1) {
+        currentDir[key] = entry;
+      } else {
+        if (!currentDir[key]) {
+          currentPath += '/' + key;
+          currentDir[key] = { path: currentPath, content: {} };
+        }
 
-  pathSteps.forEach(function (key, index) {
-    if (index === length - 1) {
-      currentDir[key] = entry;
-    } else {
-      if (!currentDir[key]) {
-        currentPath += '/' + key;
-        currentDir[key] = { path: currentPath, content: {} };
+        currentDir = currentDir[key].content as FileSystemCollection;
       }
-
-      currentDir = currentDir[key].content as FileSystemCollection;
-    }
+    });
   });
   return fileSystem;
 };

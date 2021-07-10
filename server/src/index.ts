@@ -2,6 +2,7 @@ import { RedisPresence, Server } from "colyseus";
 import { createServer } from "http";
 import express from "express";
 import { monitor } from "@colyseus/monitor";
+import populate from './database/populate';
 import { OS } from './rooms/OS';
 import cookieParser from "cookie-parser";
 import AuthRouter from "./auth/AuthRouter";
@@ -22,5 +23,7 @@ const gameServer = new Server({
 });
 
 gameServer.define("os", OS);
+
+populate();
 
 gameServer.listen(port);

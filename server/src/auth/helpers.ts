@@ -1,9 +1,11 @@
+import { User } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 import { matchMaker } from 'colyseus';
 import bcrypt from 'bcryptjs';
-import { PrismaClient, User } from '@prisma/client'
+import { generateSystem } from '../database/functions';
+import database from '../database';
+import { randomIp } from '../helpers/ipv4Generator';
 
-const prisma = new PrismaClient()
 
 type UserPayload = {
     username: string;
@@ -21,8 +23,7 @@ const findUserByCredentials = async (
         return null;
     }
 
-    const user = await prisma.user.findFirst({where: {username}});
-    console.log(user);
+    const user = await database.user.findFirst({where: {username}});
     if (!user) {
         return null;
     }
@@ -54,10 +55,13 @@ export const login = async (request, response) => {
 
     const accessToken = generateAccessToken(payload);
 
+    const system = await database.system.findFirst({where: {user}})
+
     response.cookie('accessToken', accessToken, {secure: true, httpOnly: true});
     response.send(
         await matchMaker.joinOrCreate('os', {
-            username,
+            user,
+            system,
         })
     );
 };
@@ -75,17 +79,19 @@ export const refresh = async (req, res): Promise<void> => {
         return res.status(401).send();
     }
 
-    const user = await prisma.user.findFirst({where: {username: payload.username}});
+    const user = await database.user.findFirst({where: {username: payload.username}});
     if (!user) {
         return res.status(401).send();
     }
 
     const newToken = generateAccessToken(payload);
 
+    const system = await database.system.findFirst({where: {user}})
+
     res.cookie('accessToken', newToken, {secure: true, httpOnly: true});
     res.send(
         await matchMaker.joinOrCreate('os', {
-            username: payload.username,
+            user, system
         })
     );
 };
@@ -104,7 +110,16 @@ export const logout = async (req, res) => {
 export const register = async (request, response) => {
     const {username, password} = request.body;
     try {
-        await prisma.user.create({data: {username, password:await bcrypt.hash(password, 10)}});
+        while (true) {
+            const ip = randomIp('192.168.0.0', 16);
+            if (!await database.system.findFirst({where: {ip}})) {
+                const system = await generateSystem();
+                await database.user.create({data: {username, password, systemIp: system.ip}});
+
+                break;
+            }
+        }
+
         await login(request, response);
     } catch (e) {
         response.status(400).send();

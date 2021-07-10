@@ -12,4 +12,22 @@ model User {
   createdAt DateTime @default(now())
   username  String   @unique
   password  String
+  system    System   @relation(fields: [systemIp], references: [ip])
+  systemIp  String
+}
+
+model System {
+  ip        String   @id
+  createdAt DateTime @default(now())
+  user      User?
+  files     File[]
+}
+
+model File {
+  system   System @relation(fields: [systemIp], references: [ip])
+  systemIp String
+  path     String
+  content  String
+
+  @@unique([systemIp, path])
 }
