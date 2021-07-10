@@ -16,7 +16,6 @@
     "framer-motion": "^4.1.17",
     "html-to-image": "^1.6.2",
     "lodash": "^4.17.21",
-    "prettier": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.3",
@@ -39,28 +38,13 @@
     "workbox-streams": "^5.1.4"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.171",
-    "eslint": "^7.29.0",
-    "eslint-config-next": "11.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "2.3.1"
+    "@types/lodash": "^4.14.171"
   },
   "scripts": {
     "start": "FAST_REFRESH=false react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint  .",
-    "lint:fix": "eslint  --fix .",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write ."
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [

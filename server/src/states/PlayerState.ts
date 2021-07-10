@@ -1,9 +1,9 @@
-import { Schema, type } from "@colyseus/schema";
+import { Schema, type } from '@colyseus/schema';
 
 export class PlayerState extends Schema {
-  @type("string")
+  @type('string')
   id: string;
-  @type("string")
+  @type('string')
   name: string;
 
   constructor(id: string, name: string) {

@@ -3,7 +3,7 @@
     "node": true,
     "es6": true
   },
-  "ignorePatterns": ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js"],
+  "ignorePatterns": ["node_modules/*", "!.prettierrc.js"],
   "extends": ["eslint:recommended"],
   "overrides": [
     {

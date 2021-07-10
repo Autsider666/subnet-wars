@@ -1,15 +1,15 @@
 export type FileSystemEntry = File | Directory;
 
 interface BaseFileSystemEntry {
-    path: string;
+  path: string;
 }
 
 export interface File extends BaseFileSystemEntry {
-    content: string;
+  content: string;
 }
 
 export interface Directory extends BaseFileSystemEntry {
-    content: FileSystemCollection;
+  content: FileSystemCollection;
 }
 
 export type FileSystemCollection = { [id: string]: FileSystemEntry };
