@@ -11,6 +11,7 @@ services:
     build:
       context: ./server
       target: server-production
+    env_file: .env
     depends_on:
       - redis
 
@@ -42,14 +43,11 @@ services:
   redis:
     image: redis:6-alpine
 
-  mongo:
-    image: mongo:4
+  db:
+    image: postgres:13-alpine
     restart: always
-    volumes:
-      - mongo_data:/data/db
     env_file: .env
 
 volumes:
-  mongo_data:
   caddy_data:
   caddy_config:

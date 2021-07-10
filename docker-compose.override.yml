@@ -10,4 +10,9 @@ services:
     build:
       target: server-development
     volumes:
-      - ./server:/usr/src/server:rw,cached
+      - ./server/prisma:/usr/src/server/prisma:ro
+      - ./server/src:/usr/src/server/src:ro
+
+  db:
+    ports:
+      - 5432:5432

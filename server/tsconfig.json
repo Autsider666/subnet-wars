@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "outDir": "lib",
     "target": "es6",
     "module": "commonjs",
@@ -12,6 +11,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*.ts"
+    "src"
   ]
 }
