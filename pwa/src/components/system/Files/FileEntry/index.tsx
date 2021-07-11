@@ -21,7 +21,7 @@ const Icon = ({ entry }: { entry: FileSystemEntry }): JSX.Element => {
 
   if (extname(entry.path) === SHORTCUT_EXTENSION) {
     const [pid] = (entry.content as string).split(':');
-    const { icon } = processRegistry[pid];
+    const { icon } = processRegistry[pid] || {};
     if (icon) {
       return icon();
     }

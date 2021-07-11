@@ -3,9 +3,8 @@ import { Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { matchMaker } from 'colyseus';
 import bcrypt from 'bcryptjs';
-import { generateSystem } from '../database/functions';
+import { createUser } from '../database/functions';
 import database from '../database';
-import { randomIp } from '../helpers/ipv4Generator';
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const ACCESS_TOKEN_LIFE = process.env.ACCESS_TOKEN_LIFE;
@@ -110,12 +109,9 @@ export const logout = async (request: Request, response: Response): Promise<Resp
 export const register = async (request: Request, response: Response): Promise<Response> => {
   const { username, password } = request.body;
   try {
-    const system = await generateSystem();
-    await database.user.create({ data: { username, password, systemIp: system.ip } });
-
+    await createUser(username, password);
     await login(request, response);
   } catch (e) {
-    console.error(e);
     return response.status(400).send();
   }
   return response.status(201).send();

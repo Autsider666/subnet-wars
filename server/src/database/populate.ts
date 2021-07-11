@@ -1,4 +1,4 @@
-import { generateSystem } from './functions';
+import { createUser, generateSystem } from './functions';
 import database from './index';
 
 export default async (): Promise<void> => {
@@ -6,5 +6,9 @@ export default async (): Promise<void> => {
   while (systemCount < 10) {
     await generateSystem();
     ++systemCount;
+  }
+
+  if ((await database.user.count()) < 1) {
+    await createUser('yorick', 'test');
   }
 };

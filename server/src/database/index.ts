@@ -1,29 +1,28 @@
-import { PrismaClient, System } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import { File } from '@prisma/client';
 
-const generateDefaultFiles = (system: System): File[] => [
-  {
-    path: '/desktop/Network Scanner.uri',
-    content: 'NetworkScanner',
-    systemIp: system.ip,
-  },
-  {
-    path: '/startMenu/Network Scanner.uri',
-    content: 'NetworkScanner',
-    systemIp: system.ip,
-  },
-  {
-    path: '/desktop/Attacker.uri',
-    content: 'Attacker',
-    systemIp: system.ip,
-  },
-  {
-    path: '/startMenu/Attacker.uri',
-    content: 'Attacker',
-    systemIp: system.ip,
-  },
-];
+const programs: { [id: string]: string } = {
+  FileExplorer: 'File Explorer',
+  Attacker: 'Attacker',
+  NetworkScanner: 'Network Scanner',
+};
+
+const directories = ['/desktop/', '/startMenu/'];
+
+const generateDefaultFiles = (systemIp: string = undefined): File[] => {
+  const files: File[] = [];
+  Object.keys(programs).forEach((program) => {
+    directories.forEach((directory) => {
+      files.push({
+        path: directory + programs[program] + '.uri',
+        content: program,
+        systemIp,
+      });
+    });
+  });
+  return files;
+};
 
 const database = new PrismaClient();
 database.$use(async (params, next) => {
@@ -32,7 +31,7 @@ database.$use(async (params, next) => {
   }
 
   if (params.model === 'System' && params.action === 'create') {
-    params.args.data.files = { create: generateDefaultFiles(params.args.data.ip) };
+    params.args.data.files = { create: generateDefaultFiles() };
   }
 
   return next(params);
