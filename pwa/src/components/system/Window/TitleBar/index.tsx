@@ -1,4 +1,3 @@
-// import useDoubleClick from 'components/system/useDoubleClick';
 import StyledTitleBar from 'components/system/Window/TitleBar/StyledTitleBar';
 import useWindowActions from 'components/system/Window/TitleBar/useWindowActions';
 import {
@@ -10,6 +9,7 @@ import {
 import { useProcessor } from 'contexts/ProcessorContext';
 import { useSystem } from 'contexts/SystemContext';
 import Button from 'styles/common/Button';
+import { doubleClick } from 'utils/functions';
 
 type TitleBarProps = {
   id: string;
@@ -20,7 +20,7 @@ const TitleBar = ({ id }: TitleBarProps): JSX.Element => {
     processes: {
       [id]: {
         autoSizing = false,
-        icon = () => <div>loading</div>,
+        icon = () => <div>Loading...</div>,
         lockAspectRatio = false,
         title = '',
         maximized = false,
@@ -31,19 +31,15 @@ const TitleBar = ({ id }: TitleBarProps): JSX.Element => {
   const isForeground = id === foregroundId;
   const { onClose, onMaximize, onMinimize } = useWindowActions(id);
   const disableMaximize = autoSizing && !lockAspectRatio;
-  // const maximizeClick = useDoubleClick(onMaximize);
 
   return (
     <StyledTitleBar className="handle" foreground={isForeground}>
-      <h1
-      // onClick={disableMaximize ? undefined : maximizeClick}
-      // onKeyPress={disableMaximize ? undefined : maximizeClick}
-      >
+      <Button as="h1" onClick={disableMaximize ? undefined : doubleClick(onMaximize)}>
         <figure>
           {icon()}
           <figcaption>{title}</figcaption>
         </figure>
-      </h1>
+      </Button>
       <nav className="cancel">
         <Button className="minimize" onClick={onMinimize} title="Minimize">
           <MinimizeIcon />

@@ -23,9 +23,13 @@ const useFocusable = (id: string, callbackEvents?: Partial<Events>): Focusable =
   const onBlur: FocusEventHandler<HTMLElement> = (event) => {
     const { relatedTarget } = event;
 
-    if (isForeground && relatedTarget !== taskbarEntry) setForegroundId('');
+    const focusedOnTaskbarEntry = relatedTarget === taskbarEntry;
+    const focusedOnInsideWindow = relatedTarget && componentWindow?.contains(relatedTarget as Node);
 
-    callbackEvents?.onBlur?.(event);
+    if (isForeground && !focusedOnTaskbarEntry && !focusedOnInsideWindow) {
+      setForegroundId('');
+      callbackEvents?.onBlur?.(event);
+    }
   };
   const moveToFront = useCallback(
     (event?: FocusEvent<HTMLElement>) => {

@@ -34,10 +34,8 @@ const NetworkScanner = ({ id }: ComponentProcessProps): JSX.Element => {
         <h4>From</h4>
         <div>
           IP:{' '}
-          <select>
-            <option value="default" selected>
-              {ip}
-            </option>
+          <select defaultValue={'default'}>
+            <option value="default">{ip}</option>
           </select>
         </div>
       </div>

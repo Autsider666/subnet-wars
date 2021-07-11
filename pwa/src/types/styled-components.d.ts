@@ -66,6 +66,9 @@ declare module 'styled-components' {
         iconSize: string;
         width: string;
       };
+      startMenu: {
+        height: string;
+      };
       titleBar: {
         buttonIconWidth: string;
         buttonWidth: string;

@@ -73,6 +73,9 @@ const defaultTheme: DefaultTheme = {
       iconSize: '19px',
       width: '48px',
     },
+    startMenu: {
+      height: '350px',
+    },
     titleBar: {
       buttonIconWidth: '10px',
       buttonWidth: '45px',

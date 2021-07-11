@@ -1,5 +1,4 @@
 import useFile from 'components/system/Files/FileEntry/useFile';
-import useDoubleClick from 'components/system/useDoubleClick';
 import StyledFileEntry from 'components/system/Files/FileEntry/StyledFileEntry';
 import { isDirectory } from 'contexts/FileSystemContext/functions';
 import { FileSystemEntry } from 'contexts/FileSystemContext/types';
@@ -8,6 +7,7 @@ import { basename, extname } from 'path';
 import Button from 'styles/common/Button';
 import { DirectoryIcon, FileIcon } from 'styles/icons/general';
 import { SHORTCUT_EXTENSION } from 'utils/constants';
+import { doubleClick } from 'utils/functions';
 
 interface props {
   entry: FileSystemEntry;
@@ -35,7 +35,7 @@ const FileEntry = ({ entry, onDirectoryClick }: props): JSX.Element => {
   return (
     <StyledFileEntry>
       <Button
-        onClick={useDoubleClick(() =>
+        onClick={doubleClick(() =>
           onDirectoryClick && isDirectory(entry)
             ? onDirectoryClick(url)
             : openFile(

@@ -2,7 +2,7 @@ import { useProcessor } from 'contexts/ProcessorContext';
 import type { MotionProps, Variant } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
-import { WINDOW_TRANSITION_DURATION_IN_MILLISECONDS } from 'utils/constants';
+import { TRANSITIONS_IN_MILLISECONDS } from 'utils/constants';
 import { pxToNum } from 'utils/functions';
 
 const active = {
@@ -76,7 +76,7 @@ const useWindowTransitions = (id: string): MotionProps => {
     exit: 'initial',
     initial: 'initial',
     transition: {
-      duration: WINDOW_TRANSITION_DURATION_IN_MILLISECONDS / 1000,
+      duration: TRANSITIONS_IN_MILLISECONDS.WINDOW / 1000,
     },
     variants: { active, initial, maximize, minimize },
   };

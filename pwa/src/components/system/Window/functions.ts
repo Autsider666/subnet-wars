@@ -2,7 +2,7 @@ import type { Size } from 'components/system/Window/RndWindow/useResizable';
 import type { Processes } from 'contexts/ProcessorContext/types';
 import type { ProcessorFunctions } from 'contexts/ProcessorContext';
 import type { Position } from 'react-rnd';
-import { PROCESS_DELIMITER, WINDOW_TRANSITION_DURATION_IN_MILLISECONDS } from 'utils/constants';
+import { PROCESS_DELIMITER, TRANSITIONS_IN_MILLISECONDS } from 'utils/constants';
 import { pxToNum } from 'utils/functions';
 
 type processCloser = ProcessorFunctions['close'];
@@ -38,5 +38,5 @@ export const centerPosition = ({ height, width }: Size, taskbarHeight: string): 
 
 export const closeWithTransition = (close: processCloser, id: string): void => {
   close(id, true);
-  setTimeout(() => close(id), WINDOW_TRANSITION_DURATION_IN_MILLISECONDS);
+  setTimeout(() => close(id), TRANSITIONS_IN_MILLISECONDS.WINDOW);
 };
