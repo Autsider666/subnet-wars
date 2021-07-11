@@ -19,7 +19,7 @@ export interface Process extends ProcessElement {
   minimized?: boolean;
   singleton?: boolean;
   title: string;
-  url?: string;
+  parameter?: string;
 }
 
 export type Processes = { [id: string]: Process };

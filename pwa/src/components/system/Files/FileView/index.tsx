@@ -12,6 +12,7 @@ interface FileViewProps {
 
 const FileView = ({ url, compact, onDirectoryClick }: FileViewProps): JSX.Element => {
   const { file } = useFileSystem(url);
+  // TODO handle single files. Should not happen here
   return (
     <StyledFileView compact={compact}>
       <StyledFileManager>

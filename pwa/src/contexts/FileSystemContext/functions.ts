@@ -12,6 +12,10 @@ export const getFile = (
     return null;
   }
 
+  if (path === '/') {
+    return { path: '/', content: fileSystem };
+  }
+
   let files = fileSystem;
   const steps = parsePath(path);
   for (const step of steps) {

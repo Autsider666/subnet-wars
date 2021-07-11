@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { Processes, ProcessElement } from 'contexts/ProcessorContext/types';
 import {
-  changeProcessUrl,
+  changeProcessParameter,
   closeProcess,
   maximizeProcess,
   minimizeProcess,
@@ -13,11 +13,11 @@ import {
 export interface ProcessorFunctions {
   title: (id: string, newTitle: string) => void;
   processes: Processes;
-  open: (id: string, url: string) => void;
+  open: (id: string, parameter?: string) => void;
   close: (id: string, closing?: boolean) => void;
   maximize: (id: string) => void;
   minimize: (id: string) => void;
-  changeUrl: (id: string, url: string) => void;
+  changeParameter: (id: string, url: string) => void;
   linkElement: (id: string, name: keyof ProcessElement, element: HTMLElement) => void;
 }
 
@@ -30,7 +30,10 @@ export const ProcessorContextWrapper = ({ children }: { children: ReactNode }): 
     []
   );
 
-  const open = useCallback((id: string, url: string) => setProcesses(openProcess(id, url)), []);
+  const open = useCallback(
+    (id: string, parameter?: string) => setProcesses(openProcess(id, parameter)),
+    []
+  );
   const close = useCallback(
     (id: string, closing?: boolean) => setProcesses(closeProcess(id, closing)),
     []
@@ -42,8 +45,8 @@ export const ProcessorContextWrapper = ({ children }: { children: ReactNode }): 
       setProcesses(setProcessElement(id, name, element)),
     []
   );
-  const changeUrl = useCallback(
-    (id: string, url: string) => setProcesses(changeProcessUrl(id, url)),
+  const changeParameter = useCallback(
+    (id: string, parameter: string) => setProcesses(changeProcessParameter(id, parameter)),
     []
   );
 
@@ -57,7 +60,7 @@ export const ProcessorContextWrapper = ({ children }: { children: ReactNode }): 
         maximize,
         minimize,
         linkElement,
-        changeUrl,
+        changeParameter,
       }}
     >
       {children}

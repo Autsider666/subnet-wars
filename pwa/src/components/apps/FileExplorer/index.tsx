@@ -6,21 +6,19 @@ import { useEffect } from 'react';
 const FileExplorer = ({ id }: ComponentProcessProps): JSX.Element => {
   const {
     title,
-    processes: { [id]: { url = '' } = {} },
-    changeUrl,
+    processes: { [id]: { parameter = '/' } = {} },
+    changeParameter,
   } = useProcessor();
 
   useEffect(() => {
-    if (url) {
-      title(id, url);
-    }
-  }, [id, url, title]);
+    title(id, parameter);
+  }, [id, parameter, title]);
 
-  return url ? (
+  return parameter ? (
     <FileView
-      url={url}
+      url={parameter}
       onDirectoryClick={(url: string) => {
-        changeUrl(id, url);
+        changeParameter(id, url);
       }}
     />
   ) : (

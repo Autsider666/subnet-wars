@@ -27,19 +27,19 @@ export const closeProcess =
     return remainingProcesses;
   };
 
-export const createPid = (processId: string, url: string): string =>
-  url ? `${processId}-${url}-${Math.random()}` : processId;
+export const createPid = (processId: string): string =>
+  `${processId}-${Math.round(Math.random() * 1000000)}`;
 
 export const openProcess =
-  (processId: string, url: string) =>
+  (processId: string, parameter?: string) =>
   (currentProcesses: Processes): Processes => {
     const { singleton } = processRegistry[processId] || {};
 
     if (singleton && Object.keys(currentProcesses).includes(processId)) {
-      return setProcessSettings(processId, { url })(currentProcesses);
+      return setProcessSettings(processId, { parameter })(currentProcesses);
     }
 
-    const id = singleton ? processId : createPid(processId, url);
+    const id = singleton ? processId : createPid(processId);
 
     return currentProcesses[id] || !processRegistry[processId]
       ? currentProcesses
@@ -47,7 +47,7 @@ export const openProcess =
           ...currentProcesses,
           [id]: {
             ...processRegistry[processId],
-            url,
+            parameter,
           },
         };
   };
@@ -66,11 +66,11 @@ export const minimizeProcess =
       minimized: !currentProcesses[processId].minimized,
     })(currentProcesses);
 
-export const changeProcessUrl =
-  (processId: string, url: string) =>
+export const changeProcessParameter =
+  (processId: string, parameter: string) =>
   (currentProcesses: Processes): Processes =>
     setProcessSettings(processId, {
-      url,
+      parameter,
     })(currentProcesses);
 
 export const setProcessElement =

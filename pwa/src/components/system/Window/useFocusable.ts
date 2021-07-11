@@ -17,7 +17,7 @@ const useFocusable = (id: string, callbackEvents?: Partial<Events>): Focusable =
   const {
     processes: { [id]: process },
   } = useProcessor();
-  const { componentWindow, minimized, taskbarEntry, url } = process || {};
+  const { componentWindow, minimized, taskbarEntry, parameter } = process || {};
   const zIndex = stackOrder.length + (minimized ? 1 : -stackOrder.indexOf(id)) + 1;
   const isForeground = id === foregroundId;
   const onBlur: FocusEventHandler<HTMLElement> = (event) => {
@@ -52,7 +52,7 @@ const useFocusable = (id: string, callbackEvents?: Partial<Events>): Focusable =
 
   useEffect(() => {
     if (process && !process.closing) setForegroundId(id);
-  }, [id, process, setForegroundId, url]);
+  }, [id, process, setForegroundId, parameter]);
 
   return {
     onBlur,

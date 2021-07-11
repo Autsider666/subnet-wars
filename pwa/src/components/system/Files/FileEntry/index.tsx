@@ -31,7 +31,7 @@ const Icon = ({ entry }: { entry: FileSystemEntry }): JSX.Element => {
 
 const FileEntry = ({ entry, onDirectoryClick }: props): JSX.Element => {
   const url = entry.path;
-  const openFile = useFile(entry);
+  const openFile = useFile();
   return (
     <StyledFileEntry>
       <Button

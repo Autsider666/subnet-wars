@@ -5,14 +5,14 @@ import { useEffect } from 'react';
 
 const FileReader = ({ id }: ComponentProcessProps): JSX.Element => {
   const { title, processes } = useProcessor();
-  const { url } = processes[id];
-  const { file } = useFileSystem(url);
+  const { parameter } = processes[id];
+  const { file } = useFileSystem(parameter);
 
   useEffect(() => {
-    if (url) {
-      title(id, url);
+    if (parameter) {
+      title(id, parameter);
     }
-  }, [id, url, title]);
+  }, [id, parameter, title]);
 
   return <div>{file?.content}</div>;
 };
