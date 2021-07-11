@@ -5,8 +5,8 @@ const StyledFileEntry = styled.li`
   height: min-content;
   padding: 2px;
 
-  path {
-    fill: ${({ theme }) => theme.colors.appBackground};
+  svg {
+    fill: ${({ theme }) => theme.colors.button.background};
   }
 
   &:focus-within,
@@ -49,7 +49,7 @@ const StyledFileEntry = styled.li`
         word-break: break-word;
       }
 
-      img {
+      svg {
         width: ${({ theme }) => theme.sizes.fileEntry.iconSize};
       }
     }
@@ -58,8 +58,8 @@ const StyledFileEntry = styled.li`
   &:hover {
     background-color: ${({ theme }) => theme.colors.fileEntry.background};
 
-    path {
-      fill: ${({ theme }) => theme.colors.titleBar.backgroundInactive};
+    svg {
+      fill: ${({ theme }) => theme.colors.text};
     }
 
     &::before {
@@ -87,7 +87,7 @@ const StyledFileEntry = styled.li`
       }
     }
 
-    path {
+    svg {
       fill: ${({ theme }) => theme.colors.text};
     }
   }

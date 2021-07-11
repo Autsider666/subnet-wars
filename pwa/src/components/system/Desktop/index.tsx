@@ -1,5 +1,5 @@
 import StyledDesktop from 'components/system/Desktop/StyledDesktop';
-import TaskBar from 'components/system/Desktop/TaskBar';
+import TaskBar from 'components/system/TaskBar';
 import FileView from 'components/system/Files/FileView';
 import AppsLoader from 'components/system/Apps/AppsLoader';
 

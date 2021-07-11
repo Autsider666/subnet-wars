@@ -63,7 +63,7 @@ const defaultTheme: DefaultTheme = {
         },
         maxWidth: '160px',
       },
-      height: '30px',
+      height: '40px',
     },
     clock: {
       fontSize: '12px',
@@ -71,7 +71,6 @@ const defaultTheme: DefaultTheme = {
     },
     startButton: {
       iconSize: '19px',
-      width: '48px',
     },
     startMenu: {
       height: '350px',

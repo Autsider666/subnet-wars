@@ -58,6 +58,7 @@ const StyledTaskBarEntry = styled.li<StyledTaskBarEntryProps>`
       position: relative;
       top: 1px;
       width: ${({ theme }) => theme.sizes.taskbar.entry.icon.size};
+      fill: ${({ theme }) => theme.colors.text};
     }
   }
 `;

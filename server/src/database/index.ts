@@ -13,6 +13,16 @@ const generateDefaultFiles = (system: System): File[] => [
     content: 'NetworkScanner',
     systemIp: system.ip,
   },
+  {
+    path: '/desktop/Attacker.uri',
+    content: 'Attacker',
+    systemIp: system.ip,
+  },
+  {
+    path: '/startMenu/Attacker.uri',
+    content: 'Attacker',
+    systemIp: system.ip,
+  },
 ];
 
 const database = new PrismaClient();

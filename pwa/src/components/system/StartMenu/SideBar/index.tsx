@@ -3,9 +3,9 @@ import {
   Documents,
   Power,
   SideMenu,
-} from 'components/system/Desktop/StartMenu/SideBar/SideBarIcons';
-import StyledSidebar from 'components/system/Desktop/StartMenu/SideBar/StyledSidebar';
-import StyledSidebarButton from 'components/system/Desktop/StartMenu/SideBar/StyledSidebarButton';
+} from 'components/system/StartMenu/SideBar/SideBarIcons';
+import StyledSidebar from 'components/system/StartMenu/SideBar/StyledSidebar';
+import StyledSidebarButton from 'components/system/StartMenu/SideBar/StyledSidebarButton';
 import { SystemState, useSystem } from 'contexts/SystemContext';
 import { useProcessor } from 'contexts/ProcessorContext';
 

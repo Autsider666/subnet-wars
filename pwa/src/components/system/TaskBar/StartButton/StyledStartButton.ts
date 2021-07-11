@@ -14,7 +14,7 @@ const StyledStartButton = styled(Button)<StyledStartButtonProps>`
   place-content: center;
   place-items: center;
   position: absolute;
-  width: ${({ theme }) => theme.sizes.startButton.width};
+  width: ${({ theme }) => theme.sizes.taskbar.height};
 
   svg {
     height: ${({ theme }) => theme.sizes.startButton.iconSize};

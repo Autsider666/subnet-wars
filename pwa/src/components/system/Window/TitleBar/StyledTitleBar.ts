@@ -40,6 +40,8 @@ const StyledTitleBar = styled.header<StyledTitleBarProps>`
         height: ${({ theme }) => theme.sizes.titleBar.iconSize};
         margin: ${({ theme }) => theme.sizes.titleBar.iconMargin};
         width: ${({ theme }) => theme.sizes.titleBar.iconSize};
+        fill: ${({ foreground, theme }) =>
+          foreground ? theme.colors.titleBar.text : theme.colors.titleBar.textInactive};
       }
 
       figcaption {

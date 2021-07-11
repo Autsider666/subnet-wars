@@ -1,5 +1,5 @@
-import StyledTaskBarEntries from 'components/system/Desktop/TaskBar/TaskBarEntries/StyledTaskBarEntries';
-import TaskBarEntry from 'components/system/Desktop/TaskBar/TaskBarEntry';
+import StyledTaskBarEntries from 'components/system/TaskBar/TaskBarEntries/StyledTaskBarEntries';
+import TaskBarEntry from 'components/system/TaskBar/TaskBarEntry';
 import { ProcessorConsumer } from 'contexts/ProcessorContext';
 
 const TaskBarEntries = (): JSX.Element => (

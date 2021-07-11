@@ -1,5 +1,5 @@
-import useWindowPeek from 'components/system/Desktop/TaskBar/TaskBarEntry/Peek/useWindowPeek';
-import StyledTaskBarEntry from 'components/system/Desktop/TaskBar/TaskBarEntry/StyledTaskBarEntry';
+import useWindowPeek from 'components/system/TaskBar/TaskBarEntry/Peek/useWindowPeek';
+import StyledTaskBarEntry from 'components/system/TaskBar/TaskBarEntry/StyledTaskBarEntry';
 import useNextFocusable from 'components/system/Window/useNextFocusable';
 import { useProcessor } from 'contexts/ProcessorContext';
 import { useSystem } from 'contexts/SystemContext';

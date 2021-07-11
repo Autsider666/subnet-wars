@@ -1,6 +1,6 @@
-import SideBar from 'components/system/Desktop/StartMenu/SideBar';
-import StyledStartMenu from 'components/system/Desktop/StartMenu/StyledStartMenu';
-import useStartMenuTransition from 'components/system/Desktop/StartMenu/useStartMenuTransition';
+import SideBar from 'components/system/StartMenu/SideBar';
+import StyledStartMenu from 'components/system/StartMenu/StyledStartMenu';
+import useStartMenuTransition from 'components/system/StartMenu/useStartMenuTransition';
 import { FocusEventHandler, useEffect, useRef } from 'react';
 import FileView from 'components/system/Files/FileView';
 import { useSystem } from 'contexts/SystemContext';

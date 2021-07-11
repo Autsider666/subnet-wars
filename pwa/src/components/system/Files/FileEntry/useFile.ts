@@ -12,7 +12,6 @@ const useFile = (entry: FileSystemEntry): UseFile => {
 
   return (uri: string): void => {
     const [pid, params] = uri.split(':');
-    console.log(uri, pid, params, url);
     const id = createPid(pid, params || url);
 
     if (processes[id]) {

@@ -1,5 +1,5 @@
-import { getRange, isValidIPItemValue } from 'components/apps/NetworkScanner/IpInput/functions';
-import StyledIpInput from 'components/apps/NetworkScanner/IpInput/StyledIpInput';
+import { getRange, isValidIPItemValue } from 'components/apps/Attacker/IpInput/functions';
+import StyledIpInput from 'components/apps/Attacker/IpInput/StyledIpInput';
 import { ChangeEvent, KeyboardEvent, ClipboardEvent, useState, useRef } from 'react';
 
 const IpInput = ({ onChange }: { onChange: (ip: string) => void }): JSX.Element => {
