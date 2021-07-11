@@ -17,7 +17,7 @@ export interface ProcessorFunctions {
   close: (id: string, closing?: boolean) => void;
   maximize: (id: string) => void;
   minimize: (id: string) => void;
-  changeParameter: (id: string, url: string) => void;
+  changeParameter: (id: string, parameter: string) => void;
   linkElement: (id: string, name: keyof ProcessElement, element: HTMLElement) => void;
 }
 
