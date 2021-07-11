@@ -110,19 +110,12 @@ export const logout = async (request: Request, response: Response): Promise<Resp
 export const register = async (request: Request, response: Response): Promise<Response> => {
   const { username, password } = request.body;
   try {
-    let user = null;
-    while (user === null) {
-      const ip = randomIp('192.168.0.0', 16);
-      if (!(await database.system.findFirst({ where: { ip } }))) {
-        const system = await generateSystem();
-        user = await database.user.create({ data: { username, password, systemIp: system.ip } });
-
-        break;
-      }
-    }
+    const system = await generateSystem();
+    await database.user.create({ data: { username, password, systemIp: system.ip } });
 
     await login(request, response);
   } catch (e) {
+    console.error(e);
     return response.status(400).send();
   }
   return response.status(201).send();
