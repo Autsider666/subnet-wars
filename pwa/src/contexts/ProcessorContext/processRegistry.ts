@@ -1,6 +1,13 @@
 import { Processes } from 'contexts/ProcessorContext/types';
 import { lazy } from 'react';
-import { AttackerIcon, DirectoryIcon, ReaderIcon, ScanIcon } from 'styles/icons/general';
+import {
+  AttackerIcon,
+  DirectoryIcon,
+  PortManagerIcon,
+  PortScannerIcon,
+  ReaderIcon,
+  ScanIcon,
+} from 'styles/icons/general';
 
 const processRegistry: Processes = {
   FileExplorer: {
@@ -26,6 +33,18 @@ const processRegistry: Processes = {
     Component: lazy(() => import('components/apps/FileReader')),
     icon: ReaderIcon,
     title: 'File reader',
+  },
+  PortManager: {
+    backgroundColor: 'dimgrey',
+    Component: lazy(() => import('components/apps/PortManager')),
+    icon: PortManagerIcon,
+    title: 'Port Manager',
+  },
+  PortScanner: {
+    backgroundColor: '#202020',
+    Component: lazy(() => import('components/apps/PortScanner')),
+    icon: PortScannerIcon,
+    title: 'Port Scanner',
   },
 };
 

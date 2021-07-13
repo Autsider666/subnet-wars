@@ -6,6 +6,8 @@ const programs: { [id: string]: string } = {
   FileExplorer: 'File Explorer',
   Attacker: 'Attacker',
   NetworkScanner: 'Network Scanner',
+  PortScanner: 'Port Scanner',
+  PortManager: 'Port Manager',
 };
 
 const directories = ['/desktop/', '/startMenu/'];

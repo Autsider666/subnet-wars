@@ -77,7 +77,7 @@ const defaultTheme: DefaultTheme = {
     },
     titleBar: {
       buttonIconWidth: '10px',
-      buttonWidth: '45px',
+      buttonWidth: '30px',
       fontSize: '12px',
       height: '30px',
       iconMargin: '0 5px 0 8px',
