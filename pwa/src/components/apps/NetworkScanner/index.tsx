@@ -2,6 +2,7 @@ import type { ComponentProcessProps } from 'components/system/Apps/RenderCompone
 import { useGameState } from 'contexts/GameContext';
 import { useProcessor } from 'contexts/ProcessorContext';
 import { useEffect } from 'react';
+import Button from 'styles/common/Button';
 
 const NetworkScanner = ({ id }: ComponentProcessProps): JSX.Element => {
   const { title } = useProcessor();
@@ -17,7 +18,7 @@ const NetworkScanner = ({ id }: ComponentProcessProps): JSX.Element => {
 
   return (
     <>
-      <div>Scan</div>
+      <Button onClick={()=>console.log('scan')}>Scan</Button>
     </>
   );
 };

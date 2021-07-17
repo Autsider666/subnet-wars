@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@colyseus/monitor": "^0.14.0",
+    "@colyseus/ws-transport": "^0.14.18",
     "@prisma/client": "^2.26.0",
     "bcryptjs": "^2.4.3",
     "colyseus": "^0.14.0",

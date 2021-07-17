@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledTable = styled.table`
+const Table = styled.table`
   table-layout: auto;
   width: 100%;
   text-align: center;
@@ -22,4 +22,4 @@ const StyledTable = styled.table`
   }
 `;
 
-export default StyledTable;
+export default Table;

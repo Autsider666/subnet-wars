@@ -1,4 +1,4 @@
-import StyledTable from 'components/apps/PortManager/StyledTable';
+import Table from 'styles/common/Table';
 
 enum ScriptType {
   Attack,
@@ -50,7 +50,7 @@ const PortManager = (): JSX.Element => {
   };
 
   return (
-    <StyledTable>
+    <Table>
       <thead>
         <tr>
           <th>Id</th>
@@ -69,7 +69,7 @@ const PortManager = (): JSX.Element => {
           </tr>
         ))}
       </tbody>
-    </StyledTable>
+    </Table>
   );
 };
 

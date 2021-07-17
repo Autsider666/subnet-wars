@@ -8,26 +8,89 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  username  String   @unique
-  password  String
-  system    System   @relation(fields: [systemIp], references: [ip])
-  systemIp  String
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  username     String   @unique
+  password     String
+  system       System   @relation(fields: [systemIp], references: [ip])
+  systemIp     String
+  bankCurrency Int      @default(0)
+  domain       Domain?
+}
+
+enum SystemType {
+  NPC
+  PLAYER
 }
 
 model System {
-  ip        String   @id
-  createdAt DateTime @default(now())
-  user      User?
-  files     File[]
+  ip             String     @id
+  createdAt      DateTime   @default(now())
+  user           User?
+  files          File[]
+  systemType     SystemType @default(NPC)
+  walletCurrency Int        @default(0)
+  hardware       Hardware[]
+  ports          Port[]
+  restartsAt     DateTime   @default(now())
+  domain         Domain?
+}
+
+model Domain {
+  name     String @id
+  system   System @relation(fields: [systemIp], references: [ip])
+  systemIp String
+  user     User?  @relation(fields: [userId], references: [id])
+  userId   Int?
+}
+
+model Port {
+  id          Int     @id @default(autoincrement())
+  number      Int
+  description String
+  system      System  @relation(fields: [systemIp], references: [ip])
+  systemIp    String
+  script      Script? @relation(fields: [scriptId], references: [id])
+  scriptId    Int?
+  health      Int
+
+  @@unique([systemIp, number])
+}
+
+enum ScriptType {
+  ATTACK
+  BANKING
+  FTP
+  HTTP
+}
+
+model Script {
+  id         Int        @id @default(autoincrement())
+  name       String
+  baseCpu    Int
+  scriptType ScriptType
+  Port       Port[]
 }
 
 model File {
+  id       Int    @id @default(autoincrement())
   system   System @relation(fields: [systemIp], references: [ip])
   systemIp String
   path     String
   content  String
 
   @@unique([systemIp, path])
+}
+
+enum HardwareType {
+  CPU
+  SSD
+  MEMORY
+}
+
+model Hardware {
+  name         String       @id
+  hardwareType HardwareType
+  value        Int
+  systems      System[]
 }

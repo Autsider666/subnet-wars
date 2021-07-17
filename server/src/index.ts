@@ -2,7 +2,8 @@ import { RedisPresence, Server } from 'colyseus';
 import { createServer } from 'http';
 import express from 'express';
 import { monitor } from '@colyseus/monitor';
-import populate from './database/populate';
+import { WebSocketTransport } from "@colyseus/ws-transport";
+import populate from './database/seeding/populate';
 import { OS } from './rooms/OS';
 import cookieParser from 'cookie-parser';
 import AuthRouter from './auth/AuthRouter';
@@ -16,7 +17,9 @@ app.use('/status', monitor());
 app.use(AuthRouter);
 
 const gameServer = new Server({
-  server: createServer(app),
+  transport: new WebSocketTransport({
+    server: createServer(app),
+  }),
   presence: new RedisPresence({
     host: 'redis',
   }),
